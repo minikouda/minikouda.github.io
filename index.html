@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Andy Zhang — Data Scientist</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ===== NAV ===== -->
+  <nav class="nav" id="navbar">
+    <div class="nav-inner">
+      <a href="#hero" class="nav-logo mono">&lt;Andy/&gt;</a>
+      <ul class="nav-links">
+        <li><a href="#about"     class="nav-link">About</a></li>
+        <li><a href="#skills"    class="nav-link">Skills</a></li>
+        <li><a href="#experience" class="nav-link">Experience</a></li>
+        <li><a href="#projects"  class="nav-link">Projects</a></li>
+        <li><a href="#education" class="nav-link">Education</a></li>
+        <li><a href="#contact"   class="nav-link">Contact</a></li>
+        <li><a href="#" class="btn btn-nav" download>
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Resume
+        </a></li>
+      </ul>
+      <button class="nav-hamburger" id="menuToggle" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ===== HERO ===== -->
+  <section id="hero" class="hero">
+    <div class="hero-bg-mesh" aria-hidden="true"></div>
+    <div class="hero-content">
+      <div class="hero-badges">
+        <span class="badge badge-available"><span class="badge-dot"></span>Open to Work</span>
+        <span class="badge badge-study"><span class="mono">▶</span> M.A. Statistics @ UC Berkeley</span>
+      </div>
+      <p class="hero-greeting mono">// Hello, world! I'm</p>
+      <h1 class="hero-name">Shizhe<br /><span class="gradient-text">"Andy" Zhang</span></h1>
+      <div class="hero-title-wrapper">
+        <span class="hero-role" id="typingTarget"></span><span class="cursor" id="cursor">|</span>
+      </div>
+      <p class="hero-description">
+        A cute <strong class="psyduck-text">Psyduck</strong> from UC Berkeley 🐥 — waddling through data,
+        building ML models, and occasionally suffering from a statistical headache.
+        Passionate about turning messy numbers into beautiful insights.
+      </p>
+      <div class="hero-actions">
+        <a href="#projects" class="btn btn-primary">
+          View My Work
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+        </a>
+        <a href="#contact" class="btn btn-secondary">Get In Touch</a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat"><span class="stat-num gradient-text">4.0</span><span class="stat-label">Current GPA</span></div>
+        <div class="stat-divider"></div>
+        <div class="stat"><span class="stat-num gradient-text">3.96</span><span class="stat-label">Undergrad GPA</span></div>
+        <div class="stat-divider"></div>
+        <div class="stat"><span class="stat-num gradient-text">Top 0.2%</span><span class="stat-label">National Scholarship</span></div>
+      </div>
+    </div>
+
+    <div class="hero-visual" aria-hidden="true">
+      <div class="code-block glass-card">
+        <div class="code-header">
+          <span class="dot dot-red"></span><span class="dot dot-yellow"></span><span class="dot dot-green"></span>
+          <span class="code-title mono">andy_zhang.py</span>
+        </div>
+        <pre class="code-body mono"><span class="c-kw">class</span> <span class="c-cls">AndyZhang</span>:
+    <span class="c-kw">def</span> <span class="c-fn">__init__</span>(<span class="c-var">self</span>):
+        <span class="c-var">self</span>.nickname  = <span class="c-str">"Psyduck 🐥"</span>
+        <span class="c-var">self</span>.school    = <span class="c-str">"UC Berkeley"</span>
+        <span class="c-var">self</span>.gpa       = <span class="c-num">4.0</span>
+        <span class="c-var">self</span>.headache  = <span class="c-cls">True</span>  <span class="c-comment"># always thinking</span>
+
+    <span class="c-kw">def</span> <span class="c-fn">skills</span>(<span class="c-var">self</span>):
+        <span class="c-kw">return</span> {
+            <span class="c-str">"ml"</span> : [<span class="c-str">"LightGBM"</span>, <span class="c-str">"XGBoost"</span>],
+            <span class="c-str">"nlp"</span>: [<span class="c-str">"RAG"</span>, <span class="c-str">"LLMs"</span>],
+            <span class="c-str">"lang"</span>: [<span class="c-str">"Python"</span>, <span class="c-str">"R"</span>],
+        }
+
+    <span class="c-kw">def</span> <span class="c-fn">hire_me</span>(<span class="c-var">self</span>) -&gt; <span class="c-cls">bool</span>:
+        <span class="c-kw">return</span> <span class="c-num">True</span>  <span class="c-comment"># always :)</span></pre>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== ABOUT ===== -->
+  <section id="about" class="section">
+    <div class="container">
+      <div class="section-label mono">// 01. about_me</div>
+      <h2 class="section-title">About Me</h2>
+      <div class="about-grid">
+        <div class="about-text fade-in">
+          <p>I'm a first-year M.A. Statistics student at <strong>UC Berkeley</strong>, with a deep interest in the intersection of statistical modeling, machine learning, and quantitative finance. My academic journey began at <strong>Zhejiang University</strong> where I graduated with honors in Economics (Advanced Class).</p>
+          <p>During internships at leading Chinese financial institutions, I applied gradient-boosting models and network analysis to build alpha-generating strategies and equity research pipelines. I thrive at turning raw, messy data into rigorous, interpretable models.</p>
+          <p>Outside of research, I served as <strong>President of the League of Economics School</strong> at Zhejiang University, organizing academic events and fostering a community of 500+ students.</p>
+          <div class="about-links">
+            <a href="mailto:shizhezhang@berkeley.edu" class="about-link">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+              shizhezhang@berkeley.edu
+            </a>
+            <a href="https://github.com" target="_blank" rel="noopener" class="about-link">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.17 6.839 9.49.5.092.682-.217.682-.482 0-.237-.008-.866-.013-1.7-2.782.603-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.464-1.11-1.464-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0 1 12 6.836c.85.004 1.705.114 2.504.336 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.202 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.741 0 .267.18.578.688.48C19.138 20.167 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg>
+              GitHub Profile
+            </a>
+          </div>
+        </div>
+        <div class="about-cards fade-in">
+          <div class="mini-card glass-card"><div class="mini-card-icon">🐥</div><div><div class="mini-card-title">Nickname</div><div class="mini-card-sub">Psyduck @ UC Berkeley</div></div></div>
+          <div class="mini-card glass-card"><div class="mini-card-icon">📍</div><div><div class="mini-card-title">Location</div><div class="mini-card-sub">Berkeley, California</div></div></div>
+          <div class="mini-card glass-card"><div class="mini-card-icon">🏆</div><div><div class="mini-card-title">National Scholarship</div><div class="mini-card-sub">Top 0.2% Nationally</div></div></div>
+          <div class="mini-card glass-card"><div class="mini-card-icon">💼</div><div><div class="mini-card-title">Target Role</div><div class="mini-card-sub">Data Science &amp; ML</div></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== SKILLS ===== -->
+  <section id="skills" class="section section-alt">
+    <div class="container">
+      <div class="section-label mono">// 02. tech_stack</div>
+      <h2 class="section-title">Skills &amp; Technologies</h2>
+      <div class="skills-grid fade-in">
+
+        <div class="skill-category glass-card">
+          <div class="skill-cat-header"><span class="skill-cat-icon">⌨️</span><h3 class="skill-cat-title mono">Languages</h3></div>
+          <div class="skill-tags">
+            <span class="skill-tag tag-blue">Python</span><span class="skill-tag tag-blue">R</span><span class="skill-tag tag-blue">SQL</span>
+            <span class="skill-tag tag-blue">Matlab</span><span class="skill-tag tag-blue">EViews</span><span class="skill-tag tag-blue">Bash</span><span class="skill-tag tag-blue">LaTeX</span>
+          </div>
+          <div class="skill-bars">
+            <div class="skill-bar-item"><div class="skill-bar-label"><span>Python</span><span class="mono">95%</span></div><div class="skill-bar-track"><div class="skill-bar-fill" data-width="95"></div></div></div>
+            <div class="skill-bar-item"><div class="skill-bar-label"><span>R</span><span class="mono">85%</span></div><div class="skill-bar-track"><div class="skill-bar-fill" data-width="85"></div></div></div>
+            <div class="skill-bar-item"><div class="skill-bar-label"><span>SQL</span><span class="mono">80%</span></div><div class="skill-bar-track"><div class="skill-bar-fill" data-width="80"></div></div></div>
+          </div>
+        </div>
+
+        <div class="skill-category glass-card">
+          <div class="skill-cat-header"><span class="skill-cat-icon">🤖</span><h3 class="skill-cat-title mono">ML / AI</h3></div>
+          <div class="skill-tags">
+            <span class="skill-tag tag-yellow">Machine Learning</span><span class="skill-tag tag-yellow">Deep Learning</span>
+            <span class="skill-tag tag-yellow">NLP</span><span class="skill-tag tag-yellow">RAG</span>
+            <span class="skill-tag tag-yellow">LightGBM</span><span class="skill-tag tag-yellow">XGBoost</span>
+          </div>
+          <div class="skill-bars">
+            <div class="skill-bar-item"><div class="skill-bar-label"><span>Machine Learning</span><span class="mono">90%</span></div><div class="skill-bar-track"><div class="skill-bar-fill bar-yellow" data-width="90"></div></div></div>
+            <div class="skill-bar-item"><div class="skill-bar-label"><span>Deep Learning</span><span class="mono">82%</span></div><div class="skill-bar-track"><div class="skill-bar-fill bar-yellow" data-width="82"></div></div></div>
+            <div class="skill-bar-item"><div class="skill-bar-label"><span>NLP / RAG</span><span class="mono">85%</span></div><div class="skill-bar-track"><div class="skill-bar-fill bar-yellow" data-width="85"></div></div></div>
+          </div>
+        </div>
+
+        <div class="skill-category glass-card">
+          <div class="skill-cat-header"><span class="skill-cat-icon">🛠️</span><h3 class="skill-cat-title mono">Tools &amp; Other</h3></div>
+          <div class="skill-tags">
+            <span class="skill-tag tag-blue">Git</span><span class="skill-tag tag-blue">Vim</span><span class="skill-tag tag-blue">Linux/Bash</span>
+            <span class="skill-tag tag-yellow">Quant Finance</span><span class="skill-tag tag-yellow">Portfolio Opt.</span>
+          </div>
+          <div class="skill-bars">
+            <div class="skill-bar-item"><div class="skill-bar-label"><span>Git / DevTools</span><span class="mono">88%</span></div><div class="skill-bar-track"><div class="skill-bar-fill" data-width="88"></div></div></div>
+            <div class="skill-bar-item"><div class="skill-bar-label"><span>Quant Finance</span><span class="mono">85%</span></div><div class="skill-bar-track"><div class="skill-bar-fill bar-yellow" data-width="85"></div></div></div>
+            <div class="skill-bar-item"><div class="skill-bar-label"><span>Research</span><span class="mono">92%</span></div><div class="skill-bar-track"><div class="skill-bar-fill" data-width="92"></div></div></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== EXPERIENCE ===== -->
+  <section id="experience" class="section">
+    <div class="container">
+      <div class="section-label mono">// 03. work_history</div>
+      <h2 class="section-title">Experience</h2>
+      <div class="timeline">
+
+        <div class="timeline-item fade-in">
+          <div class="timeline-dot"></div>
+          <div class="timeline-connector"></div>
+          <div class="timeline-content glass-card">
+            <div class="timeline-header">
+              <div><h3 class="timeline-role">Quantitative Researcher</h3><p class="timeline-company">Guotai Junan Financial Engineering Institute</p></div>
+              <span class="timeline-date mono">Jun – Aug 2025</span>
+            </div>
+            <ul class="timeline-bullets">
+              <li>Engineered event-driven alpha strategies leveraging <strong>LightGBM</strong> on historical price and corporate event data, improving factor IC.</li>
+              <li>Applied <strong>network analysis</strong> to model inter-stock relationships for factor research, uncovering latent market structure patterns.</li>
+              <li>Collaborated with senior quants to backtest and validate strategies within a proprietary research framework.</li>
+            </ul>
+            <div class="timeline-tags"><span class="tl-tag">LightGBM</span><span class="tl-tag">Network Analysis</span><span class="tl-tag">Alpha Research</span><span class="tl-tag">Python</span></div>
+          </div>
+        </div>
+
+        <div class="timeline-item fade-in">
+          <div class="timeline-dot"></div>
+          <div class="timeline-connector"></div>
+          <div class="timeline-content glass-card">
+            <div class="timeline-header">
+              <div><h3 class="timeline-role">Research Assistant</h3><p class="timeline-company">SDIC Securities</p></div>
+              <span class="timeline-date mono">Jun – Aug 2024</span>
+            </div>
+            <ul class="timeline-bullets">
+              <li>Designed and maintained <strong>ETL pipelines</strong> to consolidate financial data from multiple sources, reducing data processing time significantly.</li>
+              <li>Built an <strong>XGBoost</strong> classification model for equity return prediction, supporting analyst coverage decisions.</li>
+              <li>Produced research reports synthesizing model outputs with fundamental analysis for investment committee review.</li>
+            </ul>
+            <div class="timeline-tags"><span class="tl-tag">XGBoost</span><span class="tl-tag">ETL Pipelines</span><span class="tl-tag">Equity Research</span><span class="tl-tag">SQL</span></div>
+          </div>
+        </div>
+
+        <div class="timeline-item fade-in">
+          <div class="timeline-dot timeline-dot-alt"></div>
+          <div class="timeline-content glass-card">
+            <div class="timeline-header">
+              <div><h3 class="timeline-role">President</h3><p class="timeline-company">League of Economics School, Zhejiang University</p></div>
+              <span class="timeline-date mono">Jun 2023 – Jun 2024</span>
+            </div>
+            <ul class="timeline-bullets">
+              <li>Led a student organization of <strong>500+ members</strong>, overseeing academic lectures, career development events, and cross-department collaborations.</li>
+              <li>Organized 10+ high-profile events including industry talks with alumni from top financial institutions.</li>
+              <li>Mentored underclassmen on research skills, internship preparation, and academic planning.</li>
+            </ul>
+            <div class="timeline-tags"><span class="tl-tag">Leadership</span><span class="tl-tag">Event Management</span><span class="tl-tag">Mentorship</span></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== PROJECTS ===== -->
+  <section id="projects" class="section section-alt">
+    <div class="container">
+      <div class="section-label mono">// 04. projects</div>
+      <h2 class="section-title">Featured Projects</h2>
+      <div class="projects-grid">
+
+        <div class="project-card glass-card fade-in">
+          <div class="project-header">
+            <div class="project-icon">🔍</div>
+            <div class="project-links">
+              <a href="#" title="GitHub" class="project-link" aria-label="GitHub">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.17 6.839 9.49.5.092.682-.217.682-.482 0-.237-.008-.866-.013-1.7-2.782.603-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.464-1.11-1.464-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0 1 12 6.836c.85.004 1.705.114 2.504.336 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.202 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.741 0 .267.18.578.688.48C19.138 20.167 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg>
+              </a>
+            </div>
+          </div>
+          <div class="project-partner mono">Industry Partner: Pyramyd</div>
+          <h3 class="project-title">RAG-Driven Company Discovery System</h3>
+          <p class="project-desc">Built a production-ready Retrieval-Augmented Generation pipeline that enables intelligent company discovery by semantically searching and ranking firms based on complex natural-language queries. Integrated vector embeddings, document store, and LLM-based summarization.</p>
+          <div class="project-tags"><span class="p-tag">RAG</span><span class="p-tag">LLMs</span><span class="p-tag">NLP</span><span class="p-tag">Vector Search</span><span class="p-tag">Python</span></div>
+        </div>
+
+        <div class="project-card glass-card fade-in">
+          <div class="project-header">
+            <div class="project-icon">📈</div>
+            <div class="project-links">
+              <a href="#" title="GitHub" class="project-link" aria-label="GitHub">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.17 6.839 9.49.5.092.682-.217.682-.482 0-.237-.008-.866-.013-1.7-2.782.603-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.464-1.11-1.464-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0 1 12 6.836c.85.004 1.705.114 2.504.336 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.202 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.741 0 .267.18.578.688.48C19.138 20.167 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg>
+              </a>
+            </div>
+          </div>
+          <h3 class="project-title">Robust Portfolio Optimization of CNE5 Factors</h3>
+          <p class="project-desc">Applied robust optimization methods — including worst-case and distributionally robust formulations — to Chinese equity (CNE5) factor portfolios. Investigated how parameter uncertainty propagates into portfolio weights and risk-adjusted returns.</p>
+          <div class="project-tags"><span class="p-tag">Portfolio Optimization</span><span class="p-tag">Robust Methods</span><span class="p-tag">Quant Finance</span><span class="p-tag">Python</span><span class="p-tag">R</span></div>
+        </div>
+
+        <div class="project-card glass-card fade-in">
+          <div class="project-header">
+            <div class="project-icon">🔬</div>
+            <div class="project-links">
+              <a href="#" title="GitHub" class="project-link" aria-label="GitHub">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.17 6.839 9.49.5.092.682-.217.682-.482 0-.237-.008-.866-.013-1.7-2.782.603-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.464-1.11-1.464-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0 1 12 6.836c.85.004 1.705.114 2.504.336 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.202 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.741 0 .267.18.578.688.48C19.138 20.167 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg>
+              </a>
+            </div>
+          </div>
+          <h3 class="project-title">Capital Market, Rational Inattention &amp; Internet Search</h3>
+          <p class="project-desc">Empirical research examining how investor limited attention — proxied through internet search volume indices — affects asset pricing in capital markets. Constructed panel datasets linking search trends to stock-level return anomalies.</p>
+          <div class="project-tags"><span class="p-tag">Econometrics</span><span class="p-tag">Panel Data</span><span class="p-tag">Asset Pricing</span><span class="p-tag">R</span><span class="p-tag">EViews</span></div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== EDUCATION ===== -->
+  <section id="education" class="section">
+    <div class="container">
+      <div class="section-label mono">// 05. education</div>
+      <h2 class="section-title">Education</h2>
+      <div class="edu-grid">
+
+        <div class="edu-card glass-card fade-in">
+          <div class="edu-logo edu-logo-berkeley">UC</div>
+          <div class="edu-body">
+            <div class="edu-header">
+              <div><h3 class="edu-degree">M.A. Statistics</h3><p class="edu-school">University of California, Berkeley</p></div>
+              <span class="edu-date mono">Aug 2025 – Dec 2026</span>
+            </div>
+            <div class="edu-gpa"><span class="gpa-label mono">GPA</span><span class="gpa-value gradient-text">4.0 / 4.0</span></div>
+            <p class="edu-desc">Focusing on statistical theory, machine learning methodology, and applied probability. Engaged in research at the intersection of statistics and data science.</p>
+            <div class="edu-tags"><span class="e-tag">Statistical Theory</span><span class="e-tag">Machine Learning</span><span class="e-tag">Applied Probability</span></div>
+          </div>
+        </div>
+
+        <div class="edu-card glass-card fade-in">
+          <div class="edu-logo edu-logo-zju">ZJU</div>
+          <div class="edu-body">
+            <div class="edu-header">
+              <div><h3 class="edu-degree">B.S. Economics (Advanced Class)</h3><p class="edu-school">Zhejiang University</p></div>
+              <span class="edu-date mono">Aug 2021 – Jun 2025</span>
+            </div>
+            <div class="edu-gpa"><span class="gpa-label mono">GPA</span><span class="gpa-value gradient-text">3.96 / 4.0</span></div>
+            <p class="edu-desc">Enrolled in the selective Advanced Class program. Graduated as an Outstanding Graduate with multiple top-tier scholarships.</p>
+            <div class="edu-honors">
+              <div class="honor-badge"><span class="honor-icon">🏆</span><span>National Scholarship — Top 0.2% Nationally</span></div>
+              <div class="honor-badge"><span class="honor-icon">🌟</span><span>Outstanding Graduate</span></div>
+              <div class="honor-badge"><span class="honor-icon">🥇</span><span>First Prize Scholarships (Multiple)</span></div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CONTACT ===== -->
+  <section id="contact" class="section section-alt">
+    <div class="container">
+      <div class="section-label mono">// 06. contact</div>
+      <h2 class="section-title">Get In Touch</h2>
+      <div class="contact-wrapper fade-in">
+        <div class="contact-text">
+          <p>I'm actively looking for <strong>data science, machine learning, and quantitative research</strong> roles. Whether you have a full-time opportunity, an internship, or just want to chat about interesting problems — my inbox is always open.</p>
+          <a href="mailto:shizhezhang@berkeley.edu" class="btn btn-primary contact-btn">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+            Say Hello
+          </a>
+        </div>
+        <div class="contact-links-grid">
+          <a href="mailto:shizhezhang@berkeley.edu" class="contact-card glass-card">
+            <div class="contact-card-icon email-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg></div>
+            <div><div class="contact-card-label">Email</div><div class="contact-card-value mono">shizhezhang@berkeley.edu</div></div>
+          </a>
+          <a href="https://github.com" target="_blank" rel="noopener" class="contact-card glass-card">
+            <div class="contact-card-icon github-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.17 6.839 9.49.5.092.682-.217.682-.482 0-.237-.008-.866-.013-1.7-2.782.603-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.464-1.11-1.464-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0 1 12 6.836c.85.004 1.705.114 2.504.336 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.202 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.741 0 .267.18.578.688.48C19.138 20.167 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg></div>
+            <div><div class="contact-card-label">GitHub</div><div class="contact-card-value mono">github.com/andyzhang</div></div>
+          </a>
+          <a href="#" class="contact-card glass-card">
+            <div class="contact-card-icon location-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg></div>
+            <div><div class="contact-card-label">Location</div><div class="contact-card-value mono">Berkeley, California</div></div>
+          </a>
+          <a href="#" download class="contact-card glass-card">
+            <div class="contact-card-icon resume-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg></div>
+            <div><div class="contact-card-label">Resume</div><div class="contact-card-value mono">Download PDF</div></div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-inner">
+        <span class="mono footer-logo">&lt;Andy/&gt;</span>
+        <p class="footer-text">Designed &amp; built by Shizhe "Andy" Zhang &mdash; 2025</p>
+        <p class="footer-sub mono">Berkeley, CA &middot; shizhezhang@berkeley.edu</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
