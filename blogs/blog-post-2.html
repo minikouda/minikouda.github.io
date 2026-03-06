@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Subgame-Perfect Equilibrium in Sequential Box-Stealing — Andy Zhang</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../style.css" />
+  
+  <!-- MathJax for Formulas -->
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']],
+        processEscapes: true
+      },
+      options: {
+        ignoreHtmlClass: 'tex2jax_ignore',
+        processHtmlClass: 'tex2jax_process'
+      }
+    };
+  </script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+  <style>
+    .blog-post-container {
+      max-width: 800px;
+      margin: 100px auto 60px;
+      padding: 0 5%;
+    }
+    .blog-header {
+      margin-bottom: 40px;
+      text-align: center;
+    }
+    .blog-meta {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin-bottom: 20px;
+      font-size: 0.85rem;
+      color: var(--gold);
+    }
+    .blog-post-title {
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-weight: 900;
+      line-height: 1.1;
+      margin-bottom: 30px;
+    }
+    .blog-content {
+      font-size: 1.1rem;
+      line-height: 1.8;
+      color: var(--text-muted);
+    }
+    .blog-content p {
+      margin-bottom: 24px;
+    }
+    .blog-content h1 {
+      color: var(--text);
+      margin: 45px 0 20px;
+      font-size: 2rem;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 10px;
+    }
+    .blog-content h2 {
+      color: var(--text);
+      margin: 35px 0 15px;
+      font-size: 1.5rem;
+    }
+    .blog-content strong {
+      color: var(--text);
+    }
+    .blog-content ul {
+      list-style-type: disc;
+      margin-left: 20px;
+      margin-bottom: 24px;
+    }
+    .blog-content li {
+      margin-bottom: 10px;
+    }
+    .back-btn {
+      margin-bottom: 40px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--blue-light);
+      font-weight: 600;
+      transition: color 0.2s;
+    }
+    .back-btn:hover {
+      color: var(--gold);
+    }
+    
+    /* Proof & Theorem styling */
+    .theorem, .lemma, .proposition {
+      background: var(--surface2);
+      padding: 20px;
+      border-left: 4px solid var(--gold);
+      margin: 30px 0;
+      border-radius: 0 8px 8px 0;
+    }
+    .proof {
+      margin: -10px 0 30px;
+      padding-left: 20px;
+      border-left: 2px dashed var(--text-dim);
+      font-style: normal;
+    }
+    
+    /* Math styling adjustments */
+    .mjx-chtml {
+      color: var(--text) !important;
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="nav scrolled">
+    <div class="nav-inner">
+      <a href="../index.html" class="nav-logo"><img src="../images/profile.png" alt="Andy" style="height:52px;width:52px;border-radius:50%;object-fit:cover;mix-blend-mode:lighten;" /></a>
+      <ul class="nav-links">
+        <li><a href="../index.html#blogs" class="nav-link">Back to Blogs</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main class="blog-post-container">
+    <a href="../index.html#blogs" class="back-btn mono">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+      cd ..
+    </a>
+
+    <header class="blog-header">
+      <div class="blog-meta mono">
+        <span class="blog-date">March 6, 2026</span>
+        <span class="blog-category">Mathematics</span>
+      </div>
+      <h1 class="blog-post-title gradient-text">Subgame-Perfect Equilibrium in the Sequential Box-Stealing Game</h1>
+    </header>
+
+    <article class="blog-content tex2jax_process">
+      <h1 id="game-definition">Game Definition</h1>
+<p>There are <span class="math inline">\(N\)</span> players indexed
+<span class="math inline">\(1,2,\dots,N\)</span>.</p>
+<p>Each player <span class="math inline">\(i\)</span> initially owns a
+box containing a random variable</p>
+<p><span class="math display">\[X_i \sim
+\text{Uniform}(0,1)\]</span></p>
+<p>with all draws independent.</p>
+<p>Player 1 begins by opening their box, revealing <span
+class="math inline">\(X_1\)</span>.</p>
+<p>For each player <span class="math inline">\(i = 2,\dots,N\)</span>,
+the player chooses one action:</p>
+<ul>
+<li><p><strong>Open</strong>: Open their own box, revealing <span
+class="math inline">\(X_i\)</span>, and keep it.</p></li>
+<li><p><strong>Steal</strong>: Take a revealed value from another
+player. The stolen player receives player <span
+class="math inline">\(i\)</span>’s box and must immediately open
+it.</p></li>
+</ul>
+<p>The game ends after player <span class="math inline">\(N\)</span>
+acts.</p>
+<p>Each player’s payoff equals the value of the box they hold at the
+end.</p>
+<p>Players maximize expected payoff and all revealed values are common
+knowledge.</p>
+<h1 id="last-player-strategy">Last Player Strategy</h1>
+<p>Let <span class="math inline">\(M\)</span> denote the maximum
+revealed value before the last player moves.</p>
+<div class="theorem">
+<p><strong>Theorem 1</strong>. <em>The last player steals the maximum
+revealed value if and only if <span class="math display">\[M \ge
+\frac{1}{2}.\]</span> Otherwise the player opens their own box.</em></p>
+</div>
+<div class="proof">
+<p><em>Proof.</em> If the player steals, they can obtain value <span
+class="math inline">\(M\)</span> for certain.</p>
+<p>If the player opens their own box,</p>
+<p><span class="math display">\[\mathbb{E}[X_N] = \frac12.\]</span></p>
+<p>Thus stealing is optimal whenever <span class="math inline">\(M \ge
+1/2\)</span>. ◻</p>
+</div>
+<h1 id="second-to-last-player">Second-to-Last Player</h1>
+<p>Let the revealed values before player <span
+class="math inline">\(N-1\)</span> moves be</p>
+<p><span class="math display">\[v_1 \ge v_2 \ge \dots \ge
+v_k\]</span></p>
+<p>with</p>
+<p><span class="math display">\[M = v_1, \qquad S = v_2\]</span></p>
+<p>when <span class="math inline">\(k \ge 2\)</span>.</p>
+<h2 id="secure-steal">Secure Steal</h2>
+<div class="lemma">
+<p><strong>Lemma 1</strong>. <em>If player <span
+class="math inline">\(N-1\)</span> steals a non-maximum value <span
+class="math inline">\(y &lt; M\)</span>, the last player will not steal
+from them.</em></p>
+</div>
+<div class="proof">
+<p><em>Proof.</em> The maximum value after the move will be <span
+class="math inline">\(\max(M,X_{N-1})\)</span>, which is strictly
+greater than <span class="math inline">\(y\)</span>. The last player
+therefore steals the maximum instead of <span
+class="math inline">\(y\)</span>. ◻</p>
+</div>
+<p>Thus stealing <span class="math inline">\(S\)</span> yields
+payoff</p>
+<p><span class="math display">\[\text{Payoff} = S\]</span></p>
+<p>with certainty.</p>
+<h2 id="risky-maximum-steal">Risky Maximum Steal</h2>
+<p>If player <span class="math inline">\(N-1\)</span> steals <span
+class="math inline">\(M\)</span>, the expected payoff becomes</p>
+<p><span class="math display">\[E = (1-M)M + M\cdot \frac12\]</span></p>
+<p>because:</p>
+<ul>
+<li><p>with probability <span class="math inline">\(1-M\)</span>, the
+new box value exceeds <span class="math inline">\(M\)</span>,
+redirecting the final steal away</p></li>
+<li><p>with probability <span class="math inline">\(M\)</span>, the
+maximum remains <span class="math inline">\(M\)</span> and is
+stolen</p></li>
+</ul>
+<p>Thus</p>
+<p><span class="math display">\[E = \frac32 M - M^2.\]</span></p>
+<h2 id="opening">Opening</h2>
+<p>If the player opens their own box and <span class="math inline">\(M
+\ge 1/2\)</span>,</p>
+<p><span class="math display">\[E = \frac{M^2 + 1 - M}{2}.\]</span></p>
+<p>If <span class="math inline">\(M &lt; 1/2\)</span>, the expected
+value simplifies to</p>
+<p><span class="math display">\[E = \frac{3}{8}.\]</span></p>
+<h1 id="optimal-strategy">Optimal Strategy</h1>
+<div class="proposition">
+<p><strong>Proposition 1</strong>. <em>For the second-to-last
+player:</em></p>
+<ul>
+<li><p><em>If <span class="math inline">\(M &lt; 1/2\)</span></em></p>
+<p><em><span class="math display">\[\text{Steal } M \quad \text{iff}
+\quad M &gt; 3/8\]</span></em></p>
+<p><em>otherwise open.</em></p></li>
+<li><p><em>If <span class="math inline">\(M \ge 1/2\)</span></em></p>
+<ul>
+<li><p><em>if <span class="math inline">\(k=1\)</span>, steal <span
+class="math inline">\(M\)</span></em></p></li>
+<li><p><em>if <span class="math inline">\(k\ge2\)</span>, choose
+between</em></p>
+<p><em><span class="math display">\[\text{secure payoff }
+S\]</span></em></p>
+<p><em>and</em></p>
+<p><em><span class="math display">\[\text{risky payoff } \frac32 M -
+M^2\]</span></em></p>
+<p><em>and take the larger.</em></p></li>
+</ul></li>
+</ul>
+</div>
+<h1 id="example">Example</h1>
+<p>Suppose the revealed values include</p>
+<p><span class="math display">\[0.99 \quad \text{and} \quad
+0.98.\]</span></p>
+<p>The risky steal value becomes</p>
+<p><span class="math display">\[T(0.99) = \frac32(0.99) - 0.99^2 =
+0.5049.\]</span></p>
+<p>Since</p>
+<p><span class="math display">\[0.98 &gt; 0.5049\]</span></p>
+<p>the second-to-last player prefers stealing <span
+class="math inline">\(0.98\)</span>.</p>
+<p>The last player will then steal <span
+class="math inline">\(0.99\)</span> from someone else.</p>
+<p>Thus the equilibrium strategy is to <strong>hide beneath the
+maximum</strong>.</p>
+<h1 id="general-backward-induction">General Backward Induction</h1>
+<p>Let <span class="math inline">\(r\)</span> denote the number of
+players remaining after the current player.</p>
+<p>There exists a threshold <span class="math inline">\(c_r\)</span>
+such that in canonical subgames the player accepts a revealed value
+<span class="math inline">\(m\)</span> whenever</p>
+<p><span class="math display">\[m \ge c_r.\]</span></p>
+<p>The thresholds satisfy</p>
+<p><span class="math display">\[c_0 = \frac12, \qquad c_1 =
+\frac38\]</span></p>
+<p>and converge rapidly to</p>
+<p><span class="math display">\[c_\infty \approx 0.30685.\]</span></p>
+<p>For large games such as <span class="math inline">\(N=101\)</span>,
+nearly all early players behave as if the threshold were
+approximately</p>
+<p><span class="math display">\[0.307.\]</span></p>
+<h1 id="conclusion">Conclusion</h1>
+<p>The sequential box-stealing game exhibits a structured equilibrium
+governed by backward induction.</p>
+<p>Key insights include:</p>
+<ul>
+<li><p>The last player compares the maximum revealed value to the
+expected value of a fresh draw.</p></li>
+<li><p>The second-to-last player may strategically avoid stealing the
+maximum to prevent becoming the final target.</p></li>
+<li><p>Early players behave according to a nearly stationary threshold
+rule.</p></li>
+</ul>
+<p>The resulting equilibrium highlights how strategic exposure to future
+theft shapes optimal decisions.</p>
+    </article>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-inner">
+        <span class="mono footer-logo">&lt;Andy/&gt;</span>
+        <p class="footer-text">Designed &amp; built by Shizhe "Andy" Zhang &mdash; 2025</p>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

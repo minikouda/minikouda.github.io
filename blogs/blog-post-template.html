@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Blog Title — Andy Zhang</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../style.css" />
+  
+  <!-- MathJax for Formulas -->
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']],
+        processEscapes: true
+      },
+      options: {
+        ignoreHtmlClass: 'tex2jax_ignore',
+        processHtmlClass: 'tex2jax_process'
+      }
+    };
+  </script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+  <style>
+    .blog-post-container {
+      max-width: 800px;
+      margin: 100px auto 60px;
+      padding: 0 5%;
+    }
+    .blog-header {
+      margin-bottom: 40px;
+      text-align: center;
+    }
+    .blog-meta {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin-bottom: 20px;
+      font-size: 0.85rem;
+      color: var(--gold);
+    }
+    .blog-post-title {
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-weight: 900;
+      line-height: 1.1;
+      margin-bottom: 30px;
+    }
+    .blog-content {
+      font-size: 1.1rem;
+      line-height: 1.8;
+      color: var(--text-muted);
+    }
+    .blog-content p {
+      margin-bottom: 24px;
+    }
+    .blog-content h2 {
+      color: var(--text);
+      margin: 40px 0 20px;
+      font-size: 1.8rem;
+    }
+    .blog-content strong {
+      color: var(--text);
+    }
+    .back-btn {
+      margin-bottom: 40px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--blue-light);
+      font-weight: 600;
+      transition: color 0.2s;
+    }
+    .back-btn:hover {
+      color: var(--gold);
+    }
+    
+    /* Math styling adjustments */
+    .mjx-chtml {
+      color: var(--text) !important;
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="nav scrolled">
+    <div class="nav-inner">
+      <a href="../index.html" class="nav-logo"><img src="../images/profile.png" alt="Andy" style="height:52px;width:52px;border-radius:50%;object-fit:cover;mix-blend-mode:lighten;" /></a>
+      <ul class="nav-links">
+        <li><a href="../index.html#blogs" class="nav-link">Back to Blogs</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main class="blog-post-container">
+    <a href="../index.html#blogs" class="back-btn mono">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+      cd ..
+    </a>
+
+    <header class="blog-header">
+      <div class="blog-meta mono">
+        <span class="blog-date">March 6, 2026</span>
+        <span class="blog-category">Mathematics</span>
+      </div>
+      <h1 class="blog-post-title gradient-text">Title of the Math Blog</h1>
+    </header>
+
+    <article class="blog-content tex2jax_process">
+      <p>This is where the introductory paragraph goes. You can mention the problem statement and why it's interesting.</p>
+      
+      <h2>The Problem</h2>
+      <p>Let's define a mathematical concept here. For example, the relationship between $a$ and $b$ can be expressed as:</p>
+      <p>$$ E = mc^2 $$</p>
+      <p>Or something more complex like the Gaussian integral:</p>
+      <p>$$ \int_{-\infty}^{\infty} e^{-x^2} dx = \sqrt{\pi} $$</p>
+      
+      <h2>Step-by-Step Solution</h2>
+      <p>Provide the derivation or logic here. You can use <strong>bold text</strong> for emphasis.</p>
+      
+      <div class="glass-card" style="padding: 20px; margin: 30px 0;">
+        <p class="mono" style="font-size: 0.9rem; color: var(--gold); margin-bottom: 10px;">// Key Takeaway</p>
+        <p style="margin-bottom: 0;">Symmetry often leads to simpler solutions in complex statistical models.</p>
+      </div>
+      
+      <p>Conclusion goes here.</p>
+    </article>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-inner">
+        <span class="mono footer-logo">&lt;Andy/&gt;</span>
+        <p class="footer-text">Designed &amp; built by Shizhe "Andy" Zhang &mdash; 2025</p>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
