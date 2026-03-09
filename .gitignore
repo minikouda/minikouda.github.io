@@ -1,7 +1,7 @@
 # Blog sources (keep the HTML, ignore the drafts)
-blogs/*.pdf
-blogs/*.tex
-blogs/*.docx
+blogs/*/*.pdf
+blogs/*/*.tex
+blogs/*/*.docx
 
 # Assets and media
 assets/*.pdf
