@@ -39,13 +39,11 @@ def publish_blog(source_file, target_file, title, category, date=None):
         template = f.read()
 
     # 4. Handle relative paths for nested directories
-    # Calculate nesting depth. If target is "post.html", depth is 0. If "game/game.html", depth is 1.
     target_dir = os.path.dirname(target_file)
     depth = 0 if not target_dir else len(target_dir.split(os.sep))
     root_prefix = "../" * (depth + 1)
     
     # Replace the default "../" paths in the template with the calculated prefix
-    # These are specific to the Berkeley theme assets
     template = template.replace('href="../style.css"', f'href="{root_prefix}style.css"')
     template = template.replace('href="../index.html"', f'href="{root_prefix}index.html"')
     template = template.replace('src="../images/profile.png"', f'src="{root_prefix}images/profile.png"')
