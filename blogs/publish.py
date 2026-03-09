@@ -43,10 +43,13 @@ def publish_blog(source_file, target_file, title, category, date=None):
     depth = 0 if not target_dir else len(target_dir.split(os.sep))
     root_prefix = "../" * (depth + 1)
     
-    # Replace the default "../" paths in the template with the calculated prefix
-    template = template.replace('href="../style.css"', f'href="{root_prefix}style.css"')
-    template = template.replace('href="../index.html"', f'href="{root_prefix}index.html"')
-    template = template.replace('src="../images/profile.png"', f'src="{root_prefix}images/profile.png"')
+    # Robustly replace paths using regex
+    # Replace style.css
+    template = re.sub(r'href="\.\./style\.css"', f'href="{root_prefix}style.css"', template)
+    # Replace index.html (with or without anchor)
+    template = re.sub(r'href="\.\./index\.html(#\w+)?"', f'href="{root_prefix}index.html\\1"', template)
+    # Replace profile image
+    template = re.sub(r'src="\.\./images/profile\.png"', f'src="{root_prefix}images/profile.png"', template)
 
     # 5. Inject metadata and content
     # Update <title>
