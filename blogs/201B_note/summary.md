@@ -1,7 +1,7 @@
 # STAT 201B: Introduction to Statistics at an Advanced Level
 
 <div style="text-align: center; margin-bottom: 40px;">
-  <img src="images/page-1.png" alt="Cover Page" style="width: 100%; max-width: 600px; border-radius: 12px; box-shadow: 0 20px 40px rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.1);">
+  <img src="images/page-01.png" alt="Cover Page" style="width: 100%; max-width: 600px; border-radius: 12px; box-shadow: 0 20px 40px rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.1);">
 </div>
 
 These are my personal study notes for the **STAT 201B** course at UC Berkeley. The notes cover fundamental and advanced statistical concepts, ranging from axiomatic foundations of inference to decision theory and Bayesian statistics.
@@ -38,8 +38,8 @@ $$ f(\theta|x^n) = \frac{f(x^n|\theta)f(\theta)}{f(x^n)} $$
 ## Example Pages from the Notes
 
 <div class="gallery" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin: 30px 0;">
-  <img src="images/page-2.png" alt="Example Page 2" style="width: 100%; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1);">
-  <img src="images/page-3.png" alt="Example Page 3" style="width: 100%; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1);">
+  <img src="images/page-02.png" alt="Example Page 2" style="width: 100%; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1);">
+  <img src="images/page-03.png" alt="Example Page 3" style="width: 100%; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1);">
 </div>
 
 ---
