@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Equilibrium Strategies in the Continuous Yankee Swap — Andy Zhang</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../../style.css" />
+  
+  <!-- MathJax for Formulas -->
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']],
+        processEscapes: true
+      },
+      options: {
+        ignoreHtmlClass: 'tex2jax_ignore',
+        processHtmlClass: 'tex2jax_process'
+      }
+    };
+  </script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+  <style>
+    .blog-post-container {
+      max-width: 800px;
+      margin: 100px auto 60px;
+      padding: 0 5%;
+    }
+    .blog-header {
+      margin-bottom: 40px;
+      text-align: center;
+    }
+    .blog-meta {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin-bottom: 20px;
+      font-size: 0.85rem;
+      color: var(--gold);
+    }
+    .blog-post-title {
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-weight: 900;
+      line-height: 1.1;
+      margin-bottom: 30px;
+    }
+    .blog-content {
+      font-size: 1.1rem;
+      line-height: 1.8;
+      color: var(--text-muted);
+    }
+    .blog-content p {
+      margin-bottom: 24px;
+    }
+    .blog-content h2 {
+      color: var(--text);
+      margin: 40px 0 20px;
+      font-size: 1.8rem;
+    }
+    .blog-content strong {
+      color: var(--text);
+    }
+    .back-btn {
+      margin-bottom: 40px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--blue-light);
+      font-weight: 600;
+      transition: color 0.2s;
+    }
+    .back-btn:hover {
+      color: var(--gold);
+    }
+    
+    /* Math styling adjustments */
+    .mjx-chtml {
+      color: var(--text) !important;
+    }
+    
+    /* Table Styling */
+    .blog-content table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 30px 0;
+      font-family: var(--font-mono);
+      font-size: 0.9rem;
+      color: var(--text);
+    }
+    .blog-content th, .blog-content td {
+      padding: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      text-align: right;
+    }
+    .blog-content th {
+      background: rgba(255, 255, 255, 0.05);
+      font-weight: 600;
+      color: var(--gold);
+    }
+    .blog-content caption {
+      margin-bottom: 15px;
+      font-style: italic;
+      color: var(--text-muted);
+      text-align: left;
+    }
+
+    /* Section Numbering */
+    .blog-content {
+      counter-reset: section;
+    }
+    .blog-content h1 {
+      counter-reset: subsection;
+      margin-top: 60px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      padding-bottom: 10px;
+    }
+    .blog-content h1::before {
+      counter-increment: section;
+      content: counter(section) ". ";
+    }
+    .blog-content h2::before {
+      counter-increment: subsection;
+      content: counter(section) "." counter(subsection) " ";
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="nav scrolled">
+    <div class="nav-inner">
+      <a href="../../index.html" class="nav-logo"><img src="../../images/profile.png" alt="Andy" style="height:52px;width:52px;border-radius:50%;object-fit:cover;mix-blend-mode:lighten;" /></a>
+      <ul class="nav-links">
+        <li><a href="../../index.html#blogs" class="nav-link">Back to Blogs</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main class="blog-post-container">
+    <a href="../../index.html#blogs" class="back-btn mono">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+      cd ..
+    </a>
+
+    <header class="blog-header">
+      <div class="blog-meta mono">
+        <span class="blog-date">March 4, 2026</span>
+        <span class="blog-category">Game Theory</span>
+      </div>
+      <h1 class="blog-post-title gradient-text">Equilibrium Strategies and Expected Payoffs in the Continuous Yankee Swap Mechanism</h1>
+    </header>
+
+    <article class="blog-content tex2jax_process">
+<p>The following research report provides an exhaustive game-theoretic
+analysis of the continuous sequential allocation game—commonly analogous
+to a “Yankee Swap” or “White Elephant” mechanism—played over a uniform
+distribution <span class="math inline">\([0,1]\)</span> . In this
+formalized setting, <span class="math inline">\(101\)</span> perfectly
+rational actors participate sequentially to maximize their individual
+expected payoffs. The assets (boxes) contain hidden values independently
+drawn from a continuous uniform distribution on the interval <span
+class="math inline">\([0,1]\)</span> .</p>
+<p>Unlike discrete versions of the game, or variants characterized by
+restricted item multiplicities and capped theft limits , this continuous
+formulation permits mathematically unbounded stealing. The structural
+mechanics dictate that when a player’s box is stolen, that victim is
+instantaneously compensated by drawing a new box from the same
+distribution . The rigorous analysis of this mechanism reveals profound
+insights into backward induction, subgame perfect Nash equilibria (SPNE)
+, and the deeply counterintuitive nature of optimal stealing heuristics,
+which penalize aggressive, naive optimization.</p>
+<h1 id="axiomatic-foundations-and-state-space-mechanics">Axiomatic
+Foundations and State Space Mechanics</h1>
+<p>To derive the subgame perfect equilibrium, it is first necessary to
+rigorously define the state space of the continuous game and establish
+the invariant properties of the probability distributions in play.</p>
+<p>Let <span class="math inline">\(N = 101\)</span> be the total number
+of players. The game proceeds sequentially over <span
+class="math inline">\(N\)</span> discrete turns, indexed by the acting
+player <span class="math inline">\(m \in \{1, 2, \ldots, N\}\)</span>.
+Because rational decision-making in finite sequential games relies on
+backward induction, it is mathematically more functional to index the
+game by the number of turns remaining, denoted as <span
+class="math inline">\(k = N - m + 1\)</span>. Thus, the first player
+acts at <span class="math inline">\(k=N\)</span>, and the final player
+acts at <span class="math inline">\(k=1\)</span>.</p>
+<p>At the onset of any turn <span class="math inline">\(k\)</span>,
+there are exactly <span class="math inline">\(N - k\)</span> boxes that
+have been previously opened and are currently held by the preceding
+<span class="math inline">\(N - k\)</span> players. The player acting at
+turn <span class="math inline">\(k\)</span> is presented with two
+mutually exclusive strategic options:</p>
+<p><strong>Steal an exposed box:</strong> The player selects one of the
+<span class="math inline">\(N - k\)</span> visible, exposed boxes. The
+victim of this theft is subsequently forced to draw a new replacement
+box from the <span class="math inline">\(U(0,1)\)</span> distribution.
+If a present has been stolen once, it cannot be stolen again.</p>
+<p><strong>Draw a new box:</strong> The player bypasses the exposed
+boxes and draws a newly generated box from the <span
+class="math inline">\(U(0,1)\)</span> distribution, leaving the
+previously exposed boxes with their current respective owners.</p>
+<h2 id="the-invariance-of-the-random-variable-pool">The Invariance of
+the Random Variable Pool</h2>
+<p>A critical, yet mathematically subtle, property of this mechanic is
+the strict preservation of the independent and identically distributed
+(i.i.d.) nature of the exposed boxes. Regardless of whether a player
+chooses to steal an existing box or draw a new one, exactly one new box
+is introduced into the game’s ecosystem during that turn.</p>
+<p>Because the newly drawn box—whether drawn voluntarily by the active
+player or compulsorily by a victim of theft—is always an independent
+<span class="math inline">\(U(0,1)\)</span> random variable, the pool of
+exposed boxes at the end of the turn will always consist of exactly
+<span class="math inline">\(N - k + 1\)</span> independent <span
+class="math inline">\(U(0,1)\)</span> random variables. The specific
+sequence of thefts does not alter the underlying statistical
+distribution of the boxes in play; it solely determines the permutation
+of ownership.</p>
+<p>This realization massively simplifies the state space definition. A
+player acting with <span class="math inline">\(k\)</span> turns
+remaining simply observes <span class="math inline">\(N - k\)</span>
+realized values. Their mandate is to execute an action that maximizes
+their expected terminal value at the conclusion of the game, rigorously
+anticipating the rational, self-maximizing actions of the <span
+class="math inline">\(k - 1\)</span> players acting after them.</p>
+<h1 id="sec:threshold">Backward Induction and the Drawing Threshold
+Sequence</h1>
+<p>Since the game features finite sequential moves with perfect
+information regarding the exposed assets, it is solved analytically
+using backward induction. To formulate the optimal strategy, one must
+determine the baseline expected payoff a player receives if they are
+forced to draw a new box, assuming that all currently exposed boxes are
+determined mathematically suboptimal to steal.</p>
+<p>Let this expected payoff for a player with <span
+class="math inline">\(k\)</span> turns remaining be denoted as the
+threshold value <span class="math inline">\(t_k\)</span>.</p>
+<h2 id="the-terminal-player-k1">The Terminal Player (<span
+class="math inline">\(k=1\)</span>)</h2>
+<p>The final player (Player <span class="math inline">\(101\)</span>)
+faces <span class="math inline">\(100\)</span> exposed boxes. Because
+there are no subsequent actors to fear, Player <span
+class="math inline">\(101\)</span>’s strategy is strictly and safely
+greedy. Let the maximum available exposed box be denoted by the first
+order statistic, <span class="math display">\[X_{(1)} =
+\max\{X_1,\dots,X_{100}\}.\]</span></p>
+<p>The expected value of a newly drawn box is the standard mean of the
+uniform distribution, <span class="math display">\[\mathbb{E}[X] =
+\frac{1}{2}.\]</span></p>
+<p>Therefore, the baseline expected value for drawing at <span
+class="math inline">\(k=1\)</span> is</p>
+<p><span class="math display">\[t_1 = \frac{1}{2}.\]</span></p>
+<p>Player <span class="math inline">\(101\)</span> will
+deterministically steal <span class="math inline">\(X_{(1)}\)</span> if
+<span class="math inline">\(X_{(1)} &gt; t_1\)</span>; otherwise, they
+will draw a new box . Notably, the probability that the maximum of <span
+class="math inline">\(100\)</span> uniform variables is less than <span
+class="math inline">\(1/2\)</span> is</p>
+<p><span class="math display">\[P(X_{(1)} &lt; 1/2) =
+(1/2)^{100},\]</span></p>
+<p>an astronomically small figure, meaning Player <span
+class="math inline">\(101\)</span> will almost certainly steal.</p>
+<h2 id="the-penultimate-player-k2">The Penultimate Player (<span
+class="math inline">\(k=2\)</span>)</h2>
+<p>The player with two turns remaining (Player <span
+class="math inline">\(100\)</span>) must rationally anticipate Player
+<span class="math inline">\(101\)</span>’s subsequent greed. If Player
+<span class="math inline">\(100\)</span> decides to draw a new box, let
+its realized value be <span class="math inline">\(x\)</span>.</p>
+<p>If <span class="math inline">\(x &lt; t_1\)</span>, Player <span
+class="math inline">\(101\)</span> will invariably steal <span
+class="math inline">\(x\)</span>. Player <span
+class="math inline">\(100\)</span>, now the victim, is forced to draw a
+replacement box. Because Player <span
+class="math inline">\(101\)</span>’s turn is the final action of the
+game, Player <span class="math inline">\(100\)</span>’s replacement draw
+faces zero future adversaries. The expected value of a terminal
+replacement draw is simply</p>
+<p><span class="math display">\[t_0 = \frac{1}{2}.\]</span></p>
+<p>Conversely, if <span class="math inline">\(x \ge t_1\)</span>, Player
+<span class="math inline">\(101\)</span> will not steal it. In this
+scenario, Player <span class="math inline">\(100\)</span> permanently
+keeps <span class="math inline">\(x\)</span>.</p>
+<p>The expected payoff for Player <span
+class="math inline">\(100\)</span> when drawing a new box is
+therefore</p>
+<p><span class="math display">\[t_2 = \int_0^{t_1} x \, dx +
+\int_{t_1}^1 t_0\,dx .\]</span></p>
+<h2 id="the-general-recurrence-relation">The General Recurrence
+Relation</h2>
+<p>This logic extends recursively to any player with <span
+class="math inline">\(k\)</span> turns remaining. If they draw a new box
+<span class="math inline">\(x\)</span>, the subsequent players will
+evaluate <span class="math inline">\(x\)</span> against their own
+thresholds.</p>
+<p>Because the sequence of thresholds <span
+class="math inline">\(t_k\)</span> is strictly decreasing as the number
+of remaining turns increases, a stochastic property emerges: if a newly
+drawn box <span class="math inline">\(x\)</span> survives the immediate
+next player (meaning <span class="math inline">\(x \le
+t_{k-1}\)</span>), it will survive all subsequent players.</p>
+<p>Therefore:</p>
+<p>If <span class="math inline">\(x &gt; t_{k-1}\)</span>, the next
+player steals it and the original player receives a replacement draw
+evaluated at stage <span class="math inline">\(k-1\)</span>, yielding
+expected value <span class="math inline">\(t_{k-1}\)</span>.</p>
+<p>If <span class="math inline">\(x \le t_{k-1}\)</span>, the drawer
+keeps the box permanently.</p>
+<p>This yields the recurrence</p>
+<p><span class="math display">\[t_k =
+\int_0^{t_{k-1}} x\,dx
++
+\int_{t_{k-1}}^1 t_{k-1}\,dx.\]</span></p>
+<p>Simplifying,</p>
+<p><span class="math display">\[t_k = t_{k-1} -
+\frac{t_{k-1}^2}{2}.\]</span></p>
+<p>With the initial condition <span class="math inline">\(t_1 =
+\tfrac12\)</span>, this sequence maps the expected value of initiating a
+new draw for any player .</p>
+<h2 id="sec:asymptotics">Asymptotic Behavior of the Threshold
+Sequence</h2>
+<p>The strictly decreasing sequence <span
+class="math inline">\(t_k\)</span> can be evaluated asymptotically.</p>
+<p>Approximating the difference equation with a differential
+equation:</p>
+<p><span class="math display">\[t_k - t_{k-1} \approx
+\frac{dt}{dk}.\]</span></p>
+<p>This leads to</p>
+<p><span class="math display">\[\frac{dt}{dk} \approx
+-\frac{t^2}{2}.\]</span></p>
+<p>Separating variables,</p>
+<p><span class="math display">\[\frac{dt}{t^2} = -\frac12
+dk.\]</span></p>
+<p>Integrating,</p>
+<p><span class="math display">\[-\frac{1}{t} = -\frac{k}{2} +
+C.\]</span></p>
+<p>Thus</p>
+<p><span class="math display">\[t(k) \approx
+\frac{2}{k+C&#39;}.\]</span></p>
+<p>For the first player (<span class="math inline">\(k=101\)</span>),
+this implies <span class="math inline">\(t_{101}\)</span> is extremely
+small, illustrating the severe positional disadvantage of early play.
+Numerically, the <span class="math inline">\(C&#39; \approx
+103\)</span>.</p>
+<h2 id="computed-threshold-table-for-n101">Computed Threshold Table for
+<span class="math inline">\(N=101\)</span></h2>
+<p>For reference, the following table lists the numerical values of
+<span class="math inline">\(t_k\)</span> generated from <span
+class="math inline">\(t_1=0.5\)</span> and the recurrence <span
+class="math display">\[t_k = t_{k-1} - \frac{1}{2}t_{k-1}^2,\qquad k\ge
+2,\]</span> along with the corresponding move index <span
+class="math inline">\(m = N-k+1\)</span> (with <span
+class="math inline">\(N=101\)</span>).</p>
+<div id="tab:thresholds-101">
+<table>
+<caption>Threshold sequence <span class="math inline">\(t_k\)</span> and
+move index <span class="math inline">\(m\)</span> for <span
+class="math inline">\(N=101\)</span>.</caption>
+<thead>
+<tr>
+<th style="text-align: right;"><span
+class="math inline">\(k\)</span></th>
+<th style="text-align: right;">Player index (<span
+class="math inline">\(m=N-k+1\)</span>)</th>
+<th style="text-align: right;">Threshold <span
+class="math inline">\(t_k\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">101</td>
+<td style="text-align: right;">0.5000</td>
+</tr>
+<tr>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">100</td>
+<td style="text-align: right;">0.3750</td>
+</tr>
+<tr>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">99</td>
+<td style="text-align: right;">0.3046</td>
+</tr>
+<tr>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">98</td>
+<td style="text-align: right;">0.2582</td>
+</tr>
+<tr>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">97</td>
+<td style="text-align: right;">0.2249</td>
+</tr>
+<tr>
+<td style="text-align: right;">⋮</td>
+<td style="text-align: right;">⋮</td>
+<td style="text-align: right;">⋮</td>
+</tr>
+<tr>
+<td style="text-align: right;">49</td>
+<td style="text-align: right;">53</td>
+<td style="text-align: right;">0.0365</td>
+</tr>
+<tr>
+<td style="text-align: right;">50</td>
+<td style="text-align: right;">52</td>
+<td style="text-align: right;">0.0358</td>
+</tr>
+<tr>
+<td style="text-align: right;">51</td>
+<td style="text-align: right;">51</td>
+<td style="text-align: right;">0.0352</td>
+</tr>
+<tr>
+<td style="text-align: right;">⋮</td>
+<td style="text-align: right;">⋮</td>
+<td style="text-align: right;">⋮</td>
+</tr>
+<tr>
+<td style="text-align: right;">99</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">0.0190</td>
+</tr>
+<tr>
+<td style="text-align: right;">100</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">0.0187</td>
+</tr>
+<tr>
+<td style="text-align: right;">101</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.0186</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h1 id="variant-unlimited-re-steal">Variant: Unlimited Re-Steal</h1>
+<h2 id="mechanics-and-motivation">Mechanics and Motivation</h2>
+<p>We now consider a modified game in which the one-time-steal
+restriction is removed entirely. Specifically, once a present is stolen
+and passes into a new player’s hands, it remains fully exposed and may
+be stolen again by any later-acting player. Victim compensation remains
+the same: any player whose present is taken draws an independent
+replacement from <span class="math inline">\(U(0,1)\)</span>. All other
+rules are unchanged.</p>
+<p>This rule change appears minor, but it fundamentally alters the
+strategic landscape. In the locked variant, an agent who successfully
+steals a high-value box retains it with certainty for the rest of the
+game. Under unlimited re-stealing, a player holding a high-value box
+faces ongoing expropriation risk from every future actor. This creates a
+<em>holding problem</em>: acquiring a present is no longer a terminal
+event, but the start of a stochastic custody race.</p>
+<h2 id="why-the-original-analysis-breaks-down">Why the Original Analysis
+Breaks Down</h2>
+<p>The key simplification in Section <a href="#sec:threshold"
+data-reference-type="ref" data-reference="sec:threshold">2</a> was the
+“safe harbor” property: because the threshold sequence <span
+class="math inline">\(t_k\)</span> is strictly decreasing in <span
+class="math inline">\(k\)</span>, a box that survives the immediate next
+player survives all subsequent players too. Safe harbor is a direct
+consequence of locking: once a box is locked, it is immune to future
+theft regardless of its value.</p>
+<p>Under unlimited re-stealing, this clean cascade cannot hold. A box
+with value <span class="math inline">\(v\)</span> that is not stolen by
+the next player may still be stolen by the player after that, or the one
+after that, because no immunity is ever conferred. The state of each
+held box is <em>permanently exposed</em>. Consequently, one cannot
+describe a player’s strategy by a single threshold applied to raw box
+values; the payoff of acquiring a particular value <span
+class="math inline">\(v\)</span> depends on how many future players
+remain—even after the immediately next player passes on it.</p>
+<h2 id="the-holding-value-function-and-coupled-recurrences">The
+Holding-Value Function and Coupled Recurrences</h2>
+<p>To capture this, define a <em>holding-value function</em>: <span
+class="math display">\[h(v, k) \;=\; \text{expected final payoff of
+currently possessing box } v \text{, with } k \text{ players yet to
+act.}\]</span></p>
+<p>The base case is: <span class="math display">\[h(v, 0) = v,\]</span>
+since no future player can expropriate the box.</p>
+<p>Now fix <span class="math inline">\(k \geq 1\)</span> and suppose all
+future players act optimally. Let <span
+class="math inline">\(s_k\)</span> denote the expected payoff a player
+with <span class="math inline">\(k\)</span> turns remaining obtains by
+choosing optimally (drawing or stealing). A player with <span
+class="math inline">\(k\)</span> turns remaining will steal box <span
+class="math inline">\(v\)</span> rather than draw if and only if doing
+so yields a higher expected payoff, i.e. if <span
+class="math inline">\(h(v, k-1) &gt; s_k\)</span>. Because <span
+class="math inline">\(h(v, k-1)\)</span> is non-decreasing in <span
+class="math inline">\(v\)</span>, there exists a value threshold <span
+class="math inline">\(\tau_k\)</span> defined implicitly by <span
+class="math display">\[h(\tau_k,\, k-1) = s_k.\]</span> The player
+steals the box with the highest value <span class="math inline">\(v^* =
+\max_i X_i\)</span> on the table if <span class="math inline">\(v^* &gt;
+\tau_k\)</span>, and draws otherwise.</p>
+<p>When held with <span class="math inline">\(k\)</span> turns
+remaining, a box of value <span class="math inline">\(v\)</span> faces
+the following outcome:</p>
+<ul>
+<li><p>If <span class="math inline">\(v \leq \tau_k\)</span>: the
+current holder is safe for this turn. The box remains, and will face the
+same risk at the next turn—governed by <span class="math inline">\(h(v,
+k-1)\)</span>.</p></li>
+<li><p>If <span class="math inline">\(v &gt; \tau_k\)</span>: the next
+player steals the box. The current holder is compensated by a fresh draw
+<span class="math inline">\(X&#39; \sim U(0,1)\)</span>, which they now
+hold with <span class="math inline">\(k-1\)</span> turns
+remaining.</p></li>
+</ul>
+<p>This gives the recurrence <span class="math display">\[h(v, k) \;=\;
+\begin{cases}
+h(v,\, k-1) &amp; \text{if } v \leq \tau_k, \\
+\mathbb{E}\bigl[h(X&#39;,\, k-1)\bigr] &amp; \text{if } v &gt; \tau_k,
+\end{cases}\]</span> where <span class="math inline">\(X&#39; \sim
+U(0,1)\)</span> is independent, and <span
+class="math inline">\(\mathbb{E}[h(X&#39;, k-1)] = \int_0^1 h(u,
+k-1)\,du\)</span>. Denoting this unconditional expectation <span
+class="math inline">\(\bar{h}_{k-1} = \int_0^1 h(u,\,k-1)\,du\)</span>,
+the recurrence simplifies to <span class="math display">\[h(v, k) =
+\begin{cases}
+h(v,\, k-1) &amp; v \leq \tau_k, \\
+\bar{h}_{k-1} &amp; v &gt; \tau_k.
+\end{cases}\]</span></p>
+<p>The threshold <span class="math inline">\(\tau_k\)</span> is pinned
+by <span class="math inline">\(s_k\)</span>, the value a player expects
+when starting their turn. Assuming the optimal decision is to steal the
+best available box <span class="math inline">\(v^*\)</span> when <span
+class="math inline">\(v^* &gt; \tau_k\)</span>: <span
+class="math display">\[s_k = \Pr(v^* \leq \tau_k)\cdot \bar h_{k} +
+\Pr(v^* &gt; \tau_k)\cdot h(v^*, k-1),\]</span> where the distribution
+of <span class="math inline">\(v^*\)</span> is that of the maximum of
+<span class="math inline">\(k-1\)</span> i.i.d. <span
+class="math inline">\(U(0,1)\)</span> variables (since there are <span
+class="math inline">\(k-1\)</span> exposed boxes when it is the <span
+class="math inline">\(k\)</span>-th-to-last player’s turn). The
+self-consistency condition <span class="math inline">\(h(\tau_k, k-1) =
+s_k\)</span> then closes the system.</p>
+<h2 id="key-structural-observations">Key Structural Observations</h2>
+<p>Several qualitative features are apparent even without a closed-form
+solution.</p>
+<p><strong>High-value boxes are doubly punished.</strong> In the locked
+game, stealing the highest available box is unambiguously the best
+action if its value exceeds the draw threshold. In the unlimited game, a
+very high value is attractive to steal precisely <em>because</em> it is
+high—meaning future players will covet it, diminishing the expected net
+benefit to the current holder. There is therefore a tension between raw
+value and expropriation risk.</p>
+<p><strong>Convergence toward the draw payoff.</strong> For large <span
+class="math inline">\(k\)</span>, <span class="math inline">\(h(v, k)
+\to \bar{h}\)</span> for a wide range of <span
+class="math inline">\(v\)</span>, because sufficiently many future
+players will eventually expropriate any above-average box and replace it
+with an i.i.d. draw. In the limit, the expected payoff becomes nearly
+independent of <span class="math inline">\(v\)</span> for high values,
+and the game approximates a pure draw lottery for early-acting
+players.</p>
+<p><strong>The i.i.d. pool invariance is preserved.</strong> Even under
+unlimited re-stealing, each turn introduces exactly one new <span
+class="math inline">\(U(0,1)\)</span> draw into the ecosystem (either
+voluntarily drawn or drawn by a victim). The joint distribution of all
+held values at any stage remains that of <span
+class="math inline">\(k\)</span> i.i.d. <span
+class="math inline">\(U(0,1)\)</span> variables, where <span
+class="math inline">\(k\)</span> tracks the number of players who have
+acted. This invariance is essential: it means the distributions entering
+<span class="math inline">\(h\)</span> and <span
+class="math inline">\(s_k\)</span> are always standard uniform, keeping
+the recurrences well-defined.</p>
+<h2 id="outlook">Outlook</h2>
+<p>A complete analytic solution requires simultaneously solving the
+coupled system for <span class="math inline">\(h(v, k)\)</span>, <span
+class="math inline">\(\tau_k\)</span>, and <span
+class="math inline">\(s_k\)</span> via backward induction from <span
+class="math inline">\(k=0\)</span>. While the recurrences above are
+exact, they do not reduce to a simple scalar map like <span
+class="math inline">\(t_k = t_{k-1} - t_{k-1}^2/2\)</span>. Numerical
+iteration over a discretized grid of values is feasible and would yield
+precise per-player payoffs; an analytic closed form appears
+substantially harder and likely requires additional structural
+assumptions or asymptotic approximations analogous to those in
+Section <a href="#sec:asymptotics" data-reference-type="ref"
+data-reference="sec:asymptotics">2.4</a>.</p>
+
+    </article>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-inner">
+        <span class="mono footer-logo">&lt;Andy/&gt;</span>
+        <p class="footer-text">Designed &amp; built by Shizhe "Andy" Zhang &mdash; 2025</p>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

@@ -1,0 +1,302 @@
+\documentclass{article}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{geometry}
+\geometry{margin=1in}
+
+\title{Equilibrium Strategies and Expected Payoffs in the Continuous Yankee Swap Mechanism}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+The following research report provides an exhaustive game-theoretic analysis of the continuous sequential allocation game—commonly analogous to a ``Yankee Swap'' or ``White Elephant'' mechanism—played over a uniform distribution $[0,1]$ . In this formalized setting, $101$ perfectly rational actors participate sequentially to maximize their individual expected payoffs. The assets (boxes) contain hidden values independently drawn from a continuous uniform distribution on the interval $[0,1]$ .
+
+Unlike discrete versions of the game, or variants characterized by restricted item multiplicities and capped theft limits , this continuous formulation permits mathematically unbounded stealing. The structural mechanics dictate that when a player's box is stolen, that victim is instantaneously compensated by drawing a new box from the same distribution . The rigorous analysis of this mechanism reveals profound insights into backward induction, subgame perfect Nash equilibria (SPNE) , and the deeply counterintuitive nature of optimal stealing heuristics, which penalize aggressive, naive optimization.
+
+\section{Axiomatic Foundations and State Space Mechanics}
+
+To derive the subgame perfect equilibrium, it is first necessary to rigorously define the state space of the continuous game and establish the invariant properties of the probability distributions in play.
+
+Let $N = 101$ be the total number of players.
+The game proceeds sequentially over $N$ discrete turns, indexed by the acting player $m \in \{1, 2, \ldots, N\}$.
+Because rational decision-making in finite sequential games relies on backward induction, it is mathematically more functional to index the game by the number of turns remaining, denoted as $k = N - m + 1$.
+Thus, the first player acts at $k=N$, and the final player acts at $k=1$.
+
+
+At the onset of any turn $k$, there are exactly $N - k$ boxes that have been previously opened and are currently held by the preceding $N - k$ players.
+The player acting at turn $k$ is presented with two mutually exclusive strategic options:
+
+\textbf{Steal an exposed box:} The player selects one of the $N - k$ visible, exposed boxes.
+The victim of this theft is subsequently forced to draw a new replacement box from the $U(0,1)$ distribution.
+If a present has been stolen once, it cannot be stolen again.
+
+\textbf{Draw a new box:} The player bypasses the exposed boxes and draws a newly generated box from the $U(0,1)$ distribution, leaving the previously exposed boxes with their current respective owners.
+
+\subsection{The Invariance of the Random Variable Pool}
+
+A critical, yet mathematically subtle, property of this mechanic is the strict preservation of the independent and identically distributed (i.i.d.) nature of the exposed boxes.
+Regardless of whether a player chooses to steal an existing box or draw a new one, exactly one new box is introduced into the game's ecosystem during that turn.
+
+Because the newly drawn box—whether drawn voluntarily by the active player or compulsorily by a victim of theft—is always an independent $U(0,1)$ random variable, the pool of exposed boxes at the end of the turn will always consist of exactly $N - k + 1$ independent $U(0,1)$ random variables.
+The specific sequence of thefts does not alter the underlying statistical distribution of the boxes in play; it solely determines the permutation of ownership.
+
+This realization massively simplifies the state space definition.
+A player acting with $k$ turns remaining simply observes $N - k$ realized values.
+Their mandate is to execute an action that maximizes their expected terminal value at the conclusion of the game, rigorously anticipating the rational, self-maximizing actions of the $k - 1$ players acting after them.
+
+
+\section{Backward Induction and the Drawing Threshold Sequence}\label{sec:threshold}
+
+Since the game features finite sequential moves with perfect information regarding the exposed assets, it is solved analytically using backward induction. To formulate the optimal strategy, one must determine the baseline expected payoff a player receives if they are forced to draw a new box, assuming that all currently exposed boxes are deemed mathematically suboptimal to steal.
+
+Let this expected payoff for a player with $k$ turns remaining be denoted as the threshold value $t_k$.
+
+\subsection{The Terminal Player ($k=1$)}
+
+The final player (Player $101$) faces $100$ exposed boxes. Because there are no subsequent actors to fear, Player $101$'s strategy is strictly and safely greedy. Let the maximum available exposed box be denoted by the first order statistic,
+\[
+X_{(1)} = \max\{X_1,\dots,X_{100}\}.
+\]
+
+The expected value of a newly drawn box is the standard mean of the uniform distribution,
+\[
+\mathbb{E}[X] = \frac{1}{2}.
+\]
+
+Therefore, the baseline expected value for drawing at $k=1$ is
+
+\[
+t_1 = \frac{1}{2}.
+\]
+
+Player $101$ will deterministically steal $X_{(1)}$ if $X_{(1)} > t_1$; otherwise, they will draw a new box . Notably, the probability that the maximum of $100$ uniform variables is less than $1/2$ is
+
+\[
+P(X_{(1)} < 1/2) = (1/2)^{100},
+\]
+
+an astronomically small figure, meaning Player $101$ will almost certainly steal.
+
+\subsection{The Penultimate Player ($k=2$)}
+
+The player with two turns remaining (Player $100$) must rationally anticipate Player $101$'s subsequent greed. If Player $100$ decides to draw a new box, let its realized value be $x$.
+
+If $x < t_1$, Player $101$ will invariably steal $x$. Player $100$, now the victim, is forced to draw a replacement box. Because Player $101$'s turn is the final action of the game, Player $100$'s replacement draw faces zero future adversaries. The expected value of a terminal replacement draw is simply
+
+\[
+t_0 = \frac{1}{2}.
+\]
+
+Conversely, if $x \ge t_1$, Player $101$ will not steal it. In this scenario, Player $100$ permanently keeps $x$.
+
+The expected payoff for Player $100$ when drawing a new box is therefore
+
+\[
+t_2 = \int_0^{t_1} x \, dx + \int_{t_1}^1 t_0\,dx .
+\]
+
+\subsection{The General Recurrence Relation}
+
+This logic extends recursively to any player with $k$ turns remaining. If they draw a new box $x$, the subsequent players will evaluate $x$ against their own thresholds.
+
+Because the sequence of thresholds $t_k$ is strictly decreasing as the number of remaining turns increases, a stochastic property emerges: if a newly drawn box $x$ survives the immediate next player 
+(meaning $x \le t_{k-1}$), it will survive all subsequent players.
+
+Therefore:
+
+If $x > t_{k-1}$, the next player steals it and the original player receives a replacement draw evaluated at stage $k-1$, yielding expected value $t_{k-1}$.
+
+If $x \le t_{k-1}$, the drawer keeps the box permanently.
+
+This yields the recurrence
+
+\[
+t_k =
+\int_0^{t_{k-1}} x\,dx
++
+\int_{t_{k-1}}^1 t_{k-1}\,dx.
+\]
+
+Simplifying,
+
+\[
+t_k = t_{k-1} - \frac{t_{k-1}^2}{2}.
+\]
+
+With the initial condition $t_1 = \tfrac12$, this sequence maps the expected value of initiating a new draw for any player .
+
+\subsection{Asymptotic Behavior of the Threshold Sequence}\label{sec:asymptotics}
+
+The strictly decreasing sequence $t_k$ can be evaluated asymptotically.
+
+Approximating the difference equation with a differential equation:
+
+\[
+t_k - t_{k-1} \approx \frac{dt}{dk}.
+\]
+
+This leads to
+
+\[
+\frac{dt}{dk} \approx -\frac{t^2}{2}.
+\]
+
+Separating variables,
+
+\[
+\frac{dt}{t^2} = -\frac12 dk.
+\]
+
+Integrating,
+
+\[
+-\frac{1}{t} = -\frac{k}{2} + C.
+\]
+
+Thus
+
+\[
+t(k) \approx \frac{2}{k+C'}.
+\]
+
+For the first player ($k=101$), this implies $t_{101}$ is extremely small, illustrating the severe positional disadvantage of early play.
+Numerically, the $C' \approx 103$.
+
+\subsection{Computed Threshold Table for $N=101$}
+
+For reference, the following table lists the numerical values of $t_k$ generated from $t_1=0.5$ and the recurrence
+\[
+t_k = t_{k-1} - \frac{1}{2}t_{k-1}^2,\qquad k\ge 2,
+\]
+along with the corresponding move index $m = N-k+1$ (with $N=101$).
+
+\begingroup
+\small
+\setlength{\tabcolsep}{7pt}
+\begin{longtable}{rrr}
+\caption{Threshold sequence $t_k$ and move index $m$ for $N=101$.}\label{tab:thresholds-101}\\
+\toprule
+$k$ & Player index ($m=N-k+1$) & Threshold $t_k$ \\
+\midrule
+\endfirsthead
+
+\endfoot
+
+\bottomrule
+\endlastfoot
+
+1 & 101 & 0.5000 \\
+2 & 100 & 0.3750 \\
+3 & 99 & 0.3046\\
+4 & 98 & 0.2582\\
+5 & 97 & 0.2249\\
+\vdots & \vdots & \vdots \\
+49 & 53 & 0.0365 \\
+50 & 52 & 0.0358 \\
+51 & 51 & 0.0352 \\
+\vdots & \vdots & \vdots \\
+99 & 3 & 0.0190\\
+100 & 2 & 0.0187 \\
+101 & 1 & 0.0186 \\
+\end{longtable}
+\endgroup
+
+
+
+\section{Variant: Unlimited Re-Steal}
+
+\subsection{Mechanics and Motivation}
+
+We now consider a modified game in which the one-time-steal restriction is removed entirely.
+Specifically, once a present is stolen and passes into a new player's hands, it remains fully exposed and may be stolen again by any later-acting player.
+Victim compensation remains the same: any player whose present is taken draws an independent replacement from $U(0,1)$.
+All other rules are unchanged.
+
+This rule change appears minor, but it fundamentally alters the strategic landscape.
+In the locked variant, an agent who successfully steals a high-value box retains it with certainty for the rest of the game.
+Under unlimited re-stealing, a player holding a high-value box faces ongoing expropriation risk from every future actor.
+This creates a \emph{holding problem}: acquiring a present is no longer a terminal event, but the start of a stochastic custody race.
+
+\subsection{Why the Original Analysis Breaks Down}
+
+The key simplification in Section~\ref{sec:threshold} was the ``safe harbor'' property: because the threshold sequence $t_k$ is strictly decreasing in $k$, a box that survives the immediate next player survives all subsequent players too.
+Safe harbor is a direct consequence of locking: once a box is locked, it is immune to future theft regardless of its value.
+
+Under unlimited re-stealing, this clean cascade cannot hold.
+A box with value $v$ that is not stolen by the next player may still be stolen by the player after that, or the one after that, because no immunity is ever conferred.
+The state of each held box is \emph{permanently exposed}.
+Consequently, one cannot describe a player's strategy by a single threshold applied to raw box values; the payoff of acquiring a particular value $v$ depends on how many future players remain—even after the immediately next player passes on it.
+
+\subsection{The Holding-Value Function and Coupled Recurrences}
+
+To capture this, define a \emph{holding-value function}:
+\[
+h(v, k) \;=\; \text{expected final payoff of currently possessing box } v \text{, with } k \text{ players yet to act.}
+\]
+
+The base case is:
+\[
+h(v, 0) = v,
+\]
+since no future player can expropriate the box.
+
+Now fix $k \geq 1$ and suppose all future players act optimally.
+Let $s_k$ denote the expected payoff a player with $k$ turns remaining obtains by choosing optimally (drawing or stealing).
+A player with $k$ turns remaining will steal box $v$ rather than draw if and only if doing so yields a higher expected payoff, i.e.\ if $h(v, k-1) > s_k$.
+Because $h(v, k-1)$ is non-decreasing in $v$, there exists a value threshold $\tau_k$ defined implicitly by
+\[
+h(\tau_k,\, k-1) = s_k.
+\]
+The player steals the box with the highest value $v^* = \max_i X_i$ on the table if $v^* > \tau_k$, and draws otherwise.
+
+When held with $k$ turns remaining, a box of value $v$ faces the following outcome:
+\begin{itemize}
+\item If $v \leq \tau_k$: the current holder is safe for this turn. The box remains, and will face the same risk at the next turn—governed by $h(v, k-1)$.
+\item If $v > \tau_k$: the next player steals the box. The current holder is compensated by a fresh draw $X' \sim U(0,1)$, which they now hold with $k-1$ turns remaining.
+\end{itemize}
+
+This gives the recurrence
+\[
+h(v, k) \;=\;
+\begin{cases}
+h(v,\, k-1) & \text{if } v \leq \tau_k, \\
+\mathbb{E}\bigl[h(X',\, k-1)\bigr] & \text{if } v > \tau_k,
+\end{cases}
+\]
+where $X' \sim U(0,1)$ is independent, and $\mathbb{E}[h(X', k-1)] = \int_0^1 h(u, k-1)\,du$.
+Denoting this unconditional expectation $\bar{h}_{k-1} = \int_0^1 h(u,\,k-1)\,du$, the recurrence simplifies to
+\[
+h(v, k) =
+\begin{cases}
+h(v,\, k-1) & v \leq \tau_k, \\
+\bar{h}_{k-1} & v > \tau_k.
+\end{cases}
+\]
+
+The threshold $\tau_k$ is pinned by $s_k$, the value a player expects when starting their turn.
+Assuming the optimal decision is to steal the best available box $v^*$ when $v^* > \tau_k$:
+\[
+s_k = \Pr(v^* \leq \tau_k)\cdot \bar h_{k} + \Pr(v^* > \tau_k)\cdot h(v^*, k-1),
+\]
+where the distribution of $v^*$ is that of the maximum of $k-1$ i.i.d.\ $U(0,1)$ variables (since there are $k-1$ exposed boxes when it is the $k$-th-to-last player's turn). The self-consistency condition $h(\tau_k, k-1) = s_k$ then closes the system.
+
+\subsection{Key Structural Observations}
+
+Several qualitative features are apparent even without a closed-form solution.
+
+\textbf{High-value boxes are doubly punished.} In the locked game, stealing the highest available box is unambiguously the best action if its value exceeds the draw threshold. In the unlimited game, a very high value is attractive to steal precisely \emph{because} it is high—meaning future players will covet it, diminishing the expected net benefit to the current holder. There is therefore a tension between raw value and expropriation risk.
+
+\textbf{Convergence toward the draw payoff.} For large $k$, $h(v, k) \to \bar{h}$ for a wide range of $v$, because sufficiently many future players will eventually expropriate any above-average box and replace it with an i.i.d.\ draw. In the limit, the expected payoff becomes nearly independent of $v$ for high values, and the game approximates a pure draw lottery for early-acting players.
+
+\textbf{The i.i.d.\ pool invariance is preserved.} Even under unlimited re-stealing, each turn introduces exactly one new $U(0,1)$ draw into the ecosystem (either voluntarily drawn or drawn by a victim). The joint distribution of all held values at any stage remains that of $k$ i.i.d.\ $U(0,1)$ variables, where $k$ tracks the number of players who have acted. This invariance is essential: it means the distributions entering $h$ and $s_k$ are always standard uniform, keeping the recurrences well-defined.
+
+\subsection{Outlook}
+
+A complete analytic solution requires simultaneously solving the coupled system for $h(v, k)$, $\tau_k$, and $s_k$ via backward induction from $k=0$.
+While the recurrences above are exact, they do not reduce to a simple scalar map like $t_k = t_{k-1} - t_{k-1}^2/2$.
+Numerical iteration over a discretized grid of values is feasible and would yield precise per-player payoffs; an analytic closed form appears substantially harder and likely requires additional structural assumptions or asymptotic approximations analogous to those in Section~\ref{sec:asymptotics}.
+
+\end{document}

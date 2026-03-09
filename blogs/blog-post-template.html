@@ -82,6 +82,51 @@
     .mjx-chtml {
       color: var(--text) !important;
     }
+    
+    /* Table Styling */
+    .blog-content table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 30px 0;
+      font-family: var(--font-mono);
+      font-size: 0.9rem;
+      color: var(--text);
+    }
+    .blog-content th, .blog-content td {
+      padding: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      text-align: right;
+    }
+    .blog-content th {
+      background: rgba(255, 255, 255, 0.05);
+      font-weight: 600;
+      color: var(--gold);
+    }
+    .blog-content caption {
+      margin-bottom: 15px;
+      font-style: italic;
+      color: var(--text-muted);
+      text-align: left;
+    }
+
+    /* Section Numbering */
+    .blog-content {
+      counter-reset: section;
+    }
+    .blog-content h1 {
+      counter-reset: subsection;
+      margin-top: 60px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      padding-bottom: 10px;
+    }
+    .blog-content h1::before {
+      counter-increment: section;
+      content: counter(section) ". ";
+    }
+    .blog-content h2::before {
+      counter-increment: subsection;
+      content: counter(section) "." counter(subsection) " ";
+    }
   </style>
 </head>
 <body>
