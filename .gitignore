@@ -16,3 +16,4 @@ assets/*.pdf
 .Trashes
 ehthumbs.db
 Thumbs.db
+.claude
