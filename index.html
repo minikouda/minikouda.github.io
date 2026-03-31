@@ -252,19 +252,51 @@
       <h2 class="section-title">Featured Projects</h2>
       <div class="projects-grid">
 
-        <div class="project-card glass-card fade-in">
-          <div class="project-header">
-            <div class="project-icon">🔍</div>
-            <div class="project-links">
-              <a href="https://github.com/minikouda/pyramyd_ml" target="_blank" rel="noopener" title="GitHub" class="project-link" aria-label="GitHub">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.17 6.839 9.49.5.092.682-.217.682-.482 0-.237-.008-.866-.013-1.7-2.782.603-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.464-1.11-1.464-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0 1 12 6.836c.85.004 1.705.114 2.504.336 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.202 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.741 0 .267.18.578.688.48C19.138 20.167 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg>
-              </a>
+        <!-- Featured: GA with live demo -->
+        <div class="project-card project-card-featured glass-card fade-in">
+          <div class="project-demo">
+            <img src="assets/ga_animation.gif" alt="Genetic Algorithm evolution animation" loading="lazy" />
+          </div>
+          <div class="project-info">
+            <div class="project-header">
+              <div class="project-icon">🧬</div>
+              <div class="project-links">
+                <a href="https://github.com/minikouda/GA" target="_blank" rel="noopener" title="GitHub" class="project-link" aria-label="GitHub">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.17 6.839 9.49.5.092.682-.217.682-.482 0-.237-.008-.866-.013-1.7-2.782.603-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.464-1.11-1.464-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0 1 12 6.836c.85.004 1.705.114 2.504.336 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.202 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.741 0 .267.18.578.688.48C19.138 20.167 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg>
+                </a>
+              </div>
+            </div>
+            <div class="project-partner mono">UC Berkeley STAT 243</div>
+            <h3 class="project-title">Genetic Algorithm for Variable Selection</h3>
+            <p class="project-desc">A flexible Python library for feature selection via Genetic Algorithms. Evolves binary feature masks using tournament selection, uniform/single/k-point crossover, and bit-flip/swap mutation with elitism and adaptive mutation. Supports pluggable fitness backends (Linear/Logistic Regression, Random Forest, SVR, Gradient Boosting), parallel cross-validation, and early stopping. The animation shows the population converging toward the true signal features over 15 generations.</p>
+            <div class="project-tags">
+              <span class="p-tag">Genetic Algorithm</span>
+              <span class="p-tag">Feature Selection</span>
+              <span class="p-tag">Optimization</span>
+              <span class="p-tag">scikit-learn</span>
+              <span class="p-tag">Python</span>
             </div>
           </div>
-          <div class="project-partner mono">Industry Partner: Pyramyd</div>
-          <h3 class="project-title">RAG-Driven Company Search System</h3>
-          <p class="project-desc">Built a production-ready Retrieval-Augmented Generation pipeline that enables intelligent company discovery by semantically searching and ranking firms based on complex natural-language queries. Integrated vector embeddings, document store, and LLM-based summarization.</p>
-          <div class="project-tags"><span class="p-tag">RAG</span><span class="p-tag">LLMs</span><span class="p-tag">NLP</span><span class="p-tag">Search</span><span class="p-tag">Recommendation</span></div>
+        </div>
+
+        <div class="project-card project-card-featured glass-card fade-in">
+          <div class="project-demo">
+            <img src="assets/pyramyd_demo.gif" alt="Pyramyd RAG demo" loading="lazy" />
+          </div>
+          <div class="project-info">
+            <div class="project-header">
+              <div class="project-icon">🔍</div>
+              <div class="project-links">
+                <a href="https://github.com/minikouda/pyramyd_ml" target="_blank" rel="noopener" title="GitHub" class="project-link" aria-label="GitHub">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.17 6.839 9.49.5.092.682-.217.682-.482 0-.237-.008-.866-.013-1.7-2.782.603-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.464-1.11-1.464-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0 1 12 6.836c.85.004 1.705.114 2.504.336 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.202 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.741 0 .267.18.578.688.48C19.138 20.167 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg>
+                </a>
+              </div>
+            </div>
+            <div class="project-partner mono">Industry Partner: Pyramyd</div>
+            <h3 class="project-title">RAG-Driven Company Search System</h3>
+            <p class="project-desc">Built a production-ready Retrieval-Augmented Generation pipeline that enables intelligent company discovery by semantically searching and ranking firms based on complex natural-language queries. Integrated vector embeddings, document store, and LLM-based summarization.</p>
+            <div class="project-tags"><span class="p-tag">RAG</span><span class="p-tag">LLMs</span><span class="p-tag">NLP</span><span class="p-tag">Search</span><span class="p-tag">Recommendation</span></div>
+          </div>
         </div>
 
         <div class="project-card glass-card fade-in">
@@ -285,6 +317,9 @@
           <div class="project-header">
             <div class="project-icon">🤖</div>
             <div class="project-links">
+              <a href="projects/rag-demo/" target="_blank" rel="noopener" title="Live Demo" class="project-link" aria-label="Live Demo" style="color:var(--gold)">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8" fill="currentColor" stroke="none"/></svg>
+              </a>
               <a href="https://github.com/minikouda/cs-288/tree/main/cs288-sp26-a3" target="_blank" rel="noopener" title="GitHub" class="project-link" aria-label="GitHub">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.17 6.839 9.49.5.092.682-.217.682-.482 0-.237-.008-.866-.013-1.7-2.782.603-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.464-1.11-1.464-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0 1 12 6.836c.85.004 1.705.114 2.504.336 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.202 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.741 0 .267.18.578.688.48C19.138 20.167 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg>
               </a>

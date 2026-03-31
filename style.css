@@ -518,6 +518,10 @@ img { max-width: 100%; }
    PROJECTS
    ============================================ */
 .projects-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+.project-card-featured { grid-column: 1 / -1; display: grid; grid-template-columns: 1.4fr 1fr; gap: 32px; align-items: center; }
+.project-card-featured .project-demo img { width: 100%; border-radius: 10px; display: block; }
+.project-card-featured .project-info { display: flex; flex-direction: column; height: 100%; }
+@media (max-width: 900px) { .project-card-featured { grid-template-columns: 1fr; } }
 
 .project-card {
   padding: 26px;
