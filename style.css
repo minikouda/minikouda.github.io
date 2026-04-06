@@ -724,3 +724,29 @@ img { max-width: 100%; }
   .timeline::before { left: -4px; }
   .timeline-dot { left: -28px; }
 }
+
+/* ── CAROUSEL ── */
+.carousel { position: relative; width: 100%; border-radius: 10px; overflow: hidden; background: #0a0a0f; }
+.carousel-slide { width: 100%; display: none; border-radius: 10px; object-fit: cover; }
+.carousel-slide.active { display: block; }
+.carousel-btn {
+  position: absolute; top: 50%; transform: translateY(-50%);
+  background: rgba(10,10,15,0.7); border: 1px solid #1e2030; color: #c8cdd8;
+  width: 32px; height: 32px; border-radius: 50%; font-size: 20px; line-height: 1;
+  cursor: pointer; display: flex; align-items: center; justify-content: center;
+  transition: background .2s, color .2s; z-index: 2;
+}
+.carousel-btn:hover { background: var(--gold); color: #0a0a0f; border-color: var(--gold); }
+.carousel-prev { left: 10px; }
+.carousel-next { right: 10px; }
+.carousel-dots { display: flex; justify-content: center; gap: 6px; padding: 8px 0 4px; background: transparent; }
+.carousel-dot {
+  width: 7px; height: 7px; border-radius: 50%; border: none;
+  background: #2a2a3a; cursor: pointer; transition: background .2s;
+}
+.carousel-dot.active { background: var(--gold); }
+.carousel-label {
+  text-align: center; font-family: 'JetBrains Mono', monospace;
+  font-size: 9px; color: #4a9eff; letter-spacing: .06em; text-transform: uppercase;
+  padding: 4px 0 0; min-height: 14px;
+}
