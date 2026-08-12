@@ -134,10 +134,10 @@ const PROJECTS = [
       { src: 'assets/refgame_decision.png', alt: 'The ask-or-commit rule: commit when confident, ask only when the description is ambiguous' },
       { src: 'assets/refgame_result.png',   alt: 'Key finding: the listener that never over-asks scores highest; more reasoning lowers the score' },
     ],
+    slideLabels: false,
     icon: '🎯',
-    partner: 'UC Berkeley CS 288',
     title: 'Ask or Commit? Clarification in Multimodal Reference Games',
-    desc: 'A decision-theoretic study of when a language agent should <em>ask a clarifying question</em> versus commit to an answer. I frame clarification as a training-free expected-utility rule grounded in Rational Speech Act theory: the listener asks only when its top posterior falls below a confidence threshold of <strong>1&minus;c</strong>. Across <strong style="color:var(--gold)">28,800 evaluations</strong> spanning 8 speaker and 6 listener strategies over synthetic vision-language scenes, a counterintuitive result emerges — <strong>more reasoning hurts</strong>. Chain-of-Thought listeners verbalize visual uncertainty into diffuse posteriors that trigger needless questions and <em>lower</em> cost-penalized accuracy, even when the top guess was already correct. Ablations pin the cause: the bottleneck for pragmatic agents is not reasoning capability but <strong style="color:var(--gold)">miscalibrated uncertainty</strong> — the simplest hard-decision listener, which never asks, dominates every elaborate alternative.',
+    desc: 'A decision-theoretic study of when a language agent should <em>ask a clarifying question</em> versus commit. Grounded in Rational Speech Act theory, the listener asks only when its top posterior falls below a confidence threshold of <strong>1&minus;c</strong> — a training-free expected-utility rule. Across <strong style="color:var(--gold)">28,800 evaluations</strong> spanning 8 speaker and 6 listener strategies, a counterintuitive result emerges: <strong>more reasoning hurts</strong>. Chain-of-Thought listeners verbalize visual uncertainty into diffuse posteriors that trigger needless questions and <em>lower</em> cost-penalized accuracy, even when the top guess was already right. The bottleneck is not reasoning capability but <strong style="color:var(--gold)">miscalibrated uncertainty</strong> — the simplest listener, which never asks, dominates every elaborate alternative.',
     links: [
       { type: 'github', url: 'https://github.com/minikouda/pragmatic-reference-game' },
       { type: 'report', url: 'assets/ask-or-commit.pdf' },
@@ -170,7 +170,6 @@ const PROJECTS = [
   {
     featured: false,
     icon: '🤖',
-    partner: 'UC Berkeley CS 288',
     title: 'Berkeley EECS RAG Question-Answering System',
     desc: 'End-to-end Retrieval-Augmented Generation pipeline over Berkeley EECS web content. Built an async web crawler, LLM-powered data cleaner, and semantic chunker. Retrieval uses FAISS dense search (BGE embeddings) fused with BM25 via RRF, augmented by HyDE query expansion and cross-encoder re-ranking. Generation powered by LLaMA-3.1-8B.',
     links: [

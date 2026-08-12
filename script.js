@@ -176,19 +176,20 @@ function buildDiagram(d) {
     </div>`;
 }
 
-function buildCarousel(slides) {
+function buildCarousel(slides, showLabels = true) {
   const imgs = slides.map((s, i) =>
     `<img src="${s.src}" alt="${s.alt}" loading="lazy" class="carousel-slide${i === 0 ? ' active' : ''}" />`
   ).join('');
   const dots = slides.map((_, i) =>
     `<button class="carousel-dot${i === 0 ? ' active' : ''}" aria-label="Slide ${i + 1}"></button>`
   ).join('');
+  const label = showLabels ? '<div class="carousel-label"></div>' : '';
   return `
     <div class="carousel">
       <div class="carousel-track">${imgs}</div>
       <button class="carousel-btn carousel-prev" aria-label="Previous">&#8249;</button>
       <button class="carousel-btn carousel-next" aria-label="Next">&#8250;</button>
-      <div class="carousel-label"></div>
+      ${label}
       <div class="carousel-dots">${dots}</div>
     </div>`;
 }
@@ -206,10 +207,10 @@ function initCarousels() {
       idx = (n + slides.length) % slides.length;
       slides[idx].classList.add('active');
       dots[idx].classList.add('active');
-      label.textContent = slides[idx].alt;
+      if (label) label.textContent = slides[idx].alt;
     }
 
-    label.textContent = slides[0].alt;
+    if (label) label.textContent = slides[0].alt;
     carousel.querySelector('.carousel-prev').addEventListener('click', () => go(idx - 1));
     carousel.querySelector('.carousel-next').addEventListener('click', () => go(idx + 1));
     dots.forEach((dot, i) => dot.addEventListener('click', () => go(i)));
@@ -225,7 +226,7 @@ function buildProjectCard(p) {
   if (p.featured) {
     let media;
     if (p.slides) {
-      media = buildCarousel(p.slides);
+      media = buildCarousel(p.slides, p.slideLabels !== false);
     } else if (p.demo.type === 'video') {
       media = `<video src="${p.demo.src}" autoplay muted loop playsinline style="width:100%;border-radius:8px;display:block;"></video>`;
     } else {
