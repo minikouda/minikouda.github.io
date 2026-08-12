@@ -5,8 +5,8 @@ blogs/*/*.docx
 
 # Assets and media
 assets/*.pdf
-!assets/Zhang Shizhe.pdf
-!assets/Zhang Shizhe (print).pdf
+!assets/Shizhe Zhang.pdf
+!assets/Shizhe Zhang (print).pdf
 !assets/ciTBI-EDA.pdf
 !assets/polar-cloud-detection.pdf
 

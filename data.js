@@ -32,6 +32,18 @@ const SVG = {
 // ── EXPERIENCE ────────────────────────────────────────────────────────────────
 const EXPERIENCE = [
   {
+    role: 'AI Developer',
+    company: 'Monolithic Power Systems',
+    date: 'May – Aug 2026',
+    alt: false,
+    bullets: [
+      'Built an enterprise <strong>document-translation platform</strong> on self-hosted <strong>Qwen&nbsp;3.5 (vLLM)</strong>: an intermediate-representation engine that parses PDF/DOCX/PPTX/XLSX, translates, and re-injects text while preserving original layout, tables, and scanned pages (BabelDOC reflow + DocLayout-YOLO + MinerU OCR). Layered on LLM-pinned glossaries for terminology consistency, a translation-memory cache, and guided-decoding guards that prevent digit loss in datasheets — FastAPI + Next.js&nbsp;16 with Azure AD SSO, covered by <strong>236</strong> engine tests.',
+      'Shipped a production <strong>SEC&nbsp;EDGAR MCP server</strong> (Model Context Protocol) on <strong>Cloudflare Workers</strong> that lets the finance team query 10-K/10-Q/8-K filings and XBRL financials directly inside <strong>Claude</strong>. Exposed <strong>10 tools + 2 analyst workflows</strong> over a resilient data layer — token-bucket throttling, exponential-backoff retries, edge caching, and a dependency-free multi-MB HTML parser — with guardrails enforcing exact figures and source citations.',
+      'Engineered a <strong>slide-generation agent</strong> in which the LLM emits <strong>schema-validated actions</strong>, never raw XML, executed by a python-pptx backend — making hallucinated edits grammatically impossible. Added an event-sourced version tree with replay-based undo, a self-correcting editor, and a closed <strong>QA&rarr;refiner</strong> loop that auto-fixes overflow/overlap, all scored by a describe-then-judge <strong>LLM-as-judge</strong> eval. Next.js/React UI with a ReactFlow version tree.',
+    ],
+    tags: ['LLM Agents', 'vLLM', 'MCP', 'Guided Decoding', 'FastAPI', 'Next.js'],
+  },
+  {
     role: 'Quantitative Researcher',
     company: 'Guotai Haitong Securities',
     date: 'Jun – Aug 2025',
@@ -118,6 +130,23 @@ const PROJECTS = [
   {
     featured: true,
     slides: [
+      { src: 'assets/refgame_demo.png',     alt: 'How a reference game works: the speaker describes a hidden target, the listener must pick it or ask' },
+      { src: 'assets/refgame_decision.png', alt: 'The ask-or-commit rule: commit when confident, ask only when the description is ambiguous' },
+      { src: 'assets/refgame_result.png',   alt: 'Key finding: the listener that never over-asks scores highest; more reasoning lowers the score' },
+    ],
+    icon: '🎯',
+    partner: 'UC Berkeley CS 288',
+    title: 'Ask or Commit? Clarification in Multimodal Reference Games',
+    desc: 'A decision-theoretic study of when a language agent should <em>ask a clarifying question</em> versus commit to an answer. I frame clarification as a training-free expected-utility rule grounded in Rational Speech Act theory: the listener asks only when its top posterior falls below a confidence threshold of <strong>1&minus;c</strong>. Across <strong style="color:var(--gold)">28,800 evaluations</strong> spanning 8 speaker and 6 listener strategies over synthetic vision-language scenes, a counterintuitive result emerges — <strong>more reasoning hurts</strong>. Chain-of-Thought listeners verbalize visual uncertainty into diffuse posteriors that trigger needless questions and <em>lower</em> cost-penalized accuracy, even when the top guess was already correct. Ablations pin the cause: the bottleneck for pragmatic agents is not reasoning capability but <strong style="color:var(--gold)">miscalibrated uncertainty</strong> — the simplest hard-decision listener, which never asks, dominates every elaborate alternative.',
+    links: [
+      { type: 'github', url: 'https://github.com/minikouda/pragmatic-reference-game' },
+      { type: 'report', url: 'assets/ask-or-commit.pdf' },
+    ],
+    tags: ['LLMs &amp; VLMs', 'Pragmatic Reasoning (RSA)', 'Uncertainty Calibration', 'Decision Theory', 'Zero-Shot', 'Python'],
+  },
+  {
+    featured: true,
+    slides: [
       { src: 'assets/cloud_data_pipeline.png',          alt: 'Data Pipeline' },
       { src: 'assets/cloud_autoencoder_architecture.png', alt: 'Autoencoder Architecture' },
     ],
@@ -176,13 +205,13 @@ const EDUCATION = [
   {
     logo: 'UC',
     logoClass: 'edu-logo-berkeley',
-    degree: 'M.A. Statistics',
+    degree: 'M.A. Statistics &amp; Data Science',
     school: 'University of California, Berkeley',
     date: 'Aug 2025 – Dec 2026',
     gpa: '4.0 / 4.0',
     desc: 'Focusing on statistical theory, machine learning methodology, and applied probability. Engaged in research at the intersection of statistics and data science.',
     honors: [],
-    tags: ['Statistical Theory', 'Machine Learning', 'Applied Probability'],
+    tags: ['Statistical Theory', 'Machine Learning', 'Natural Language Processing', 'Neural Networks', 'Optimization'],
   },
   {
     logo: 'ZJU',
