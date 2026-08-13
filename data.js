@@ -56,7 +56,7 @@ const EXPERIENCE = [
     tags: ['XGBoost', 'ETL Pipelines', 'Equity Research', 'SQL'],
   },
   {
-    role: 'Research Assistant',
+    role: 'Quantitative Researcher',
     company: 'SDIC Securities',
     date: 'Oct 2023 – Mar 2024',
     alt: false,
