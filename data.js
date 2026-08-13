@@ -37,7 +37,7 @@ const EXPERIENCE = [
     date: 'May – Aug 2026',
     alt: false,
     bullets: [
-      'Built an enterprise <strong>document-translation platform</strong> on self-hosted <strong>Qwen&nbsp;3.5 (vLLM)</strong>: an intermediate-representation engine that parses PDF/DOCX/PPTX/XLSX, translates, and re-injects text while preserving original layout, tables, and scanned pages (BabelDOC reflow + DocLayout-YOLO + MinerU OCR). Layered on LLM-pinned glossaries for terminology consistency, a translation-memory cache, and guided-decoding guards that prevent digit loss in datasheets — FastAPI + Next.js&nbsp;16 with Azure AD SSO, covered by <strong>236</strong> engine tests.',
+      'Built an enterprise <strong>document-translation platform</strong> on self-hosted LLM): an intermediate-representation engine that parses PDF/DOCX/PPTX/XLSX, translates, and re-injects text while preserving original layout, tables, and scanned pages (BabelDOC reflow + DocLayout-YOLO + MinerU OCR). Layered on LLM-pinned glossaries for terminology consistency, a translation-memory cache, and guided-decoding guards that prevent digit loss in datasheets — FastAPI + Next.js&nbsp;16 with Azure AD SSO.',
       'Shipped a production <strong>SEC&nbsp;EDGAR MCP server</strong> (Model Context Protocol) on <strong>Cloudflare Workers</strong> that lets the finance team query 10-K/10-Q/8-K filings and XBRL financials directly inside <strong>Claude</strong>. Exposed <strong>10 tools + 2 analyst workflows</strong> over a resilient data layer — token-bucket throttling, exponential-backoff retries, edge caching, and a dependency-free multi-MB HTML parser — with guardrails enforcing exact figures and source citations.',
       'Engineered a <strong>slide-generation agent</strong> in which the LLM emits <strong>schema-validated actions</strong>, never raw XML, executed by a python-pptx backend — making hallucinated edits grammatically impossible. Added an event-sourced version tree with replay-based undo, a self-correcting editor, and a closed <strong>QA&rarr;refiner</strong> loop that auto-fixes overflow/overlap, all scored by a describe-then-judge <strong>LLM-as-judge</strong> eval. Next.js/React UI with a ReactFlow version tree.',
     ],
@@ -49,23 +49,23 @@ const EXPERIENCE = [
     date: 'Jun – Aug 2025',
     alt: false,
     bullets: [
-      'Engineered event-driven alpha strategies leveraging <strong>LightGBM</strong> on historical price and corporate event data, improving factor IC.',
-      'Applied <strong>network analysis</strong> to model inter-stock relationships for factor research, uncovering latent market structure patterns.',
-      'Collaborated with senior quants to backtest and validate strategies within a proprietary research framework.',
-    ],
-    tags: ['LightGBM', 'Network Analysis', 'Alpha Research', 'Python'],
-  },
-  {
-    role: 'Research Assistant',
-    company: 'SDIC Securities',
-    date: 'Jun – Aug 2024',
-    alt: false,
-    bullets: [
       'Designed and maintained <strong>ETL pipelines</strong> to consolidate financial data from multiple sources, reducing data processing time significantly.',
       'Built an <strong>XGBoost</strong> classification model for equity return prediction, supporting analyst coverage decisions.',
       'Produced research reports synthesizing model outputs with fundamental analysis for investment committee review.',
     ],
     tags: ['XGBoost', 'ETL Pipelines', 'Equity Research', 'SQL'],
+  },
+  {
+    role: 'Research Assistant',
+    company: 'SDIC Securities',
+    date: 'Oct 2023 – Mar 2024',
+    alt: false,
+    bullets: [
+      'Engineered event-driven alpha strategies leveraging <strong>LightGBM</strong> on historical price and corporate event data, improving factor IC.',
+      'Applied <strong>network analysis</strong> to model inter-stock relationships for factor research, uncovering latent market structure patterns.',
+      'Collaborated with senior quants to backtest and validate strategies within a proprietary research framework.',
+    ],
+    tags: ['LightGBM', 'Network Analysis', 'Alpha Research', 'Python'],
   },
   {
     role: 'President',
