@@ -102,9 +102,9 @@ const PROJECTS = [
     icon: '🔍',
     partner: 'Industry Partner: Pyramyd',
     title: 'RAG-Driven Company Search System',
-    desc: 'Built a production-ready Retrieval-Augmented Generation pipeline that enables intelligent company discovery by semantically searching and ranking firms based on complex natural-language queries. Integrated vector embeddings, document store, and LLM-based summarization.',
+    desc: 'Retrieval-Augmented Generation system for company discovery over 1M+ employee reviews and company records: ranks firms against complex natural-language queries using hybrid dense (FAISS) + BM25 retrieval with RRF fusion and metadata reranking, raising retrieval relevance by 30–50% with sub-second retrieval. Fine-tuned a bi-encoder retriever with contrastive (InfoNCE) loss for a ~70% NDCG@10 gain on held-out companies, and benchmarked exact FAISS, HNSW and IVF-PQ indexes plus a cross-encoder reranker (HNSW: 96% of exact-search quality at <1 ms; reranking: +17% NDCG@10 at 64 ms p95). Answers come with LLM-generated, evidence-cited explanations.',
     links: [{ type: 'github', url: 'https://github.com/minikouda/pyramyd_ml' }],
-    tags: ['RAG', 'LLMs', 'NLP', 'Search', 'Recommendation'],
+    tags: ['RAG', 'Embeddings', 'Neural Ranking', 'FAISS / HNSW', 'LLMs', 'Search'],
   },
   {
     featured: true,
